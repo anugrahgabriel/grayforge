@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Lenis from "lenis";
 
 const FadeInBlock = ({ as: Component = "div", children, className, style, threshold = 0.1, margin = "0px 0px -25% 0px", ...props }: any) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -261,10 +262,25 @@ export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isInitialGlow, setIsInitialGlow] = useState(false);
 
+  const lenisRef = useRef<Lenis | null>(null);
+
   useEffect(() => {
+    // Initialize Lenis smooth scroll
+    const lenis = new Lenis({
+      lerp: 0.07,
+      smoothWheel: true,
+    });
+    lenisRef.current = lenis;
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    const rafId = requestAnimationFrame(raf);
+
     // Run exactly one optical glow sequence organically dropped slightly after the page fully mounts!
     const triggerTimeout = setTimeout(() => setIsInitialGlow(true), 400);
-    const stopTimeout = setTimeout(() => setIsInitialGlow(false), 3800); // Allows full animation cycle to completely trace out naturally
+    const stopTimeout = setTimeout(() => setIsInitialGlow(false), 3800);
     // Ensure page loads exactly at top
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
@@ -280,6 +296,8 @@ export default function Home() {
       window.removeEventListener("scroll", handleScroll);
       clearTimeout(triggerTimeout);
       clearTimeout(stopTimeout);
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
     };
   }, []);
 
@@ -344,28 +362,35 @@ export default function Home() {
             }}
           >
             {/* GRAYFORGE */}
-            <div
-              style={{
-                width: "max-content",
-                height: "max-content",
-                fontFamily: "'BIZ UDGothic', sans-serif",
-                fontStyle: "normal",
-                fontWeight: 700,
-                fontSize: "18px",
-                lineHeight: "23px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                textAlign: "center",
-                letterSpacing: "0%",
-                color: "#ddc8c8ff",
-                flex: "none",
-                order: 0,
-                flexGrow: 0,
-              }}
+            <a
+              href="#top"
+                            onClick={(e) => { e.preventDefault(); lenisRef.current?.scrollTo(0); }}
+              style={{ textDecoration: "none" }}
             >
-              GRAYFORGE
-            </div>
+              <div
+                style={{
+                  width: "max-content",
+                  height: "max-content",
+                  fontFamily: "'BIZ UDGothic', sans-serif",
+                  fontStyle: "normal",
+                  fontWeight: 700,
+                  fontSize: "18px",
+                  lineHeight: "23px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  textAlign: "center",
+                  letterSpacing: "0%",
+                  color: "#ddc8c8ff",
+                  flex: "none",
+                  order: 0,
+                  flexGrow: 0,
+                  cursor: "pointer",
+                }}
+              >
+                GRAYFORGE
+              </div>
+            </a>
           </div>
         </div>
 
@@ -1353,7 +1378,7 @@ export default function Home() {
                   {/* Metrics */}
                   <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start", padding: "0px", gap: "10px", margin: "0 auto", width: "360px", height: "52px", flex: "none", order: 1 }}>
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px", margin: "0 auto", width: "124px", height: "28px", flex: "none" }}>
-                      <div style={{ width: "124px", height: "28px", fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "26px", lineHeight: "28px", display: "flex", alignItems: "center", textAlign: "right", color: "#D3D3D3" }}>
+                      <div style={{ width: "124px", height: "28px", fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", textAlign: "right", color: "#D3D3D3" }}>
                         {card.roas}
                       </div>
                     </div>
@@ -1464,7 +1489,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div style={{ display: "flex", flexDirection: "row", alignItems: "center", width: "100%" }}>
-                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "38px", lineHeight: "40px", color: "#a5a4a4ff", marginLeft: "-2px" }}>
+                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "34px", lineHeight: "40px", color: "#a5a4a4ff", marginLeft: "-2px" }}>
                       <MeterText text="5.2x" />
                     </div>
                   </div>
@@ -1549,7 +1574,7 @@ export default function Home() {
 
                 {/* Metrics */}
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "4px" }}>
-                  <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "26px", lineHeight: "28px", display: "flex", alignItems: "center", color: "#D3D3D3" }}>
+                  <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", color: "#D3D3D3" }}>
                     3.8x ROAS
                   </div>
                   <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", display: "flex", alignItems: "center", color: "#7C7C7C" }}>
@@ -1617,7 +1642,7 @@ export default function Home() {
 
                 {/* Metrics */}
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "4px" }}>
-                  <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "26px", lineHeight: "28px", display: "flex", alignItems: "center", color: "#D3D3D3" }}>
+                  <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", color: "#D3D3D3" }}>
                     6.1x ROAS
                   </div>
                   <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", display: "flex", alignItems: "center", color: "#7C7C7C" }}>
@@ -1835,19 +1860,38 @@ export default function Home() {
             {/* Right: Pages */}
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "14px" }}>
               {["HOME", "WORK", "ABOUT US", "OUR STRATEGY", "PARTNERSHIP"].map((page) => (
-                <div
-                  key={page}
-                  className="text-[#B2B2B2]"
-                  style={{
-                    fontFamily: "'SF Pro', sans-serif",
-                    fontSize: "18px",
-                    lineHeight: "21px",
-                    textAlign: "right",
-                    fontWeight: 400
-                  }}
-                >
-                  <HoverMenuText text={page} hoverColor="#DA5932" />
-                </div>
+                page === "HOME" ? (
+                  <a
+                    key={page}
+                    href="#top"
+                                  onClick={(e) => { e.preventDefault(); lenisRef.current?.scrollTo(0); }}
+                    className="text-[#B2B2B2]"
+                    style={{
+                      fontFamily: "'SF Pro', sans-serif",
+                      fontSize: "18px",
+                      lineHeight: "21px",
+                      textAlign: "right",
+                      fontWeight: 400,
+                      textDecoration: "none",
+                    }}
+                  >
+                    <HoverMenuText text={page} hoverColor="#DA5932" />
+                  </a>
+                ) : (
+                  <div
+                    key={page}
+                    className="text-[#B2B2B2]"
+                    style={{
+                      fontFamily: "'SF Pro', sans-serif",
+                      fontSize: "18px",
+                      lineHeight: "21px",
+                      textAlign: "right",
+                      fontWeight: 400
+                    }}
+                  >
+                    <HoverMenuText text={page} hoverColor="#DA5932" />
+                  </div>
+                )
               ))}
             </div>
           </div>
