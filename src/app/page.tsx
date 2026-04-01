@@ -123,8 +123,8 @@ const FoldOneBackground = ({ isStartHovered = false }: { isStartHovered?: boolea
           bottom: "4px",
           left: 0, width: "100%", height: "953px",
           display: "flex", justifyContent: "center", pointerEvents: "none", zIndex: 0, overflow: "visible",
-          maskImage: "linear-gradient(to right, transparent, black 20%, black 80%, transparent)",
-          WebkitMaskImage: "linear-gradient(to right, transparent, black 20%, black 80%, transparent)"
+          maskImage: "linear-gradient(to right, transparent, black 35%, black 65%, transparent)",
+          WebkitMaskImage: "linear-gradient(to right, transparent, black 35%, black 65%, transparent)"
         }}>
           <div
             style={{
@@ -136,8 +136,8 @@ const FoldOneBackground = ({ isStartHovered = false }: { isStartHovered?: boolea
             <svg width="1440" height="953" viewBox="0 0 1440 953" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", overflow: "visible", transform: `scaleX(${isFlipped ? "1" : "-1"}) ${isFlipped ? "scaleY(-1)" : ""}` }}>
               <defs>
                 <linearGradient id={`fadeGradient-${idx}`} x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="rgba(155, 70, 44, 0)" />
-                  <stop offset="100%" stopColor="rgba(155, 70, 44, 0.28)" />
+                  <stop offset={idx === 0 ? "35%" : "60%"} stopColor="#35180F" stopOpacity="0" />
+                  <stop offset="100%" stopColor="#505050" stopOpacity="1" />
                 </linearGradient>
               </defs>
               {heights.map((h, i) => {
@@ -161,8 +161,8 @@ const FoldOneBackground = ({ isStartHovered = false }: { isStartHovered?: boolea
                 }
                 return !isFlipped ? (
                   <>
-                    <path d={d} fill="none" stroke="#9B462C" strokeOpacity="0.38" strokeWidth="1.5" />
-                    <path d={d} fill="none" stroke="#ff4f199b" strokeWidth="3" strokeLinecap="round" style={{ opacity: isStartHovered ? 0.7 : 0, strokeDasharray: "150 2500", strokeDashoffset: isStartHovered ? "150" : "-2000", transition: isStartHovered ? "stroke-dashoffset 2.5s cubic-bezier(0.2, 0.8, 0.2, 0.4), opacity 0.3s" : "stroke-dashoffset 0s, opacity 0.3s", filter: "blur(1px)" }} />
+                    <path d={d} fill="none" stroke="#2d2d2dff" strokeOpacity="1" strokeWidth="1.5" />
+                    <path d={d} fill="none" stroke="#d04715c7" strokeWidth="4" strokeLinecap="round" style={{ opacity: isStartHovered ? 1 : 0, strokeDasharray: "158 2500", strokeDashoffset: isStartHovered ? "158" : "-2000", transition: isStartHovered ? "stroke-dashoffset 2.5s cubic-bezier(0.2, 0.8, 0.2, 0.4), opacity 0.3s" : "stroke-dashoffset 0s, opacity 0.3s", filter: "blur(0.8px)" }} />
                   </>
                 ) : null;
               })()}
@@ -189,8 +189,8 @@ const PrefooterBackground = () => {
       zIndex: 0,
       overflow: "hidden",
       opacity: 0.45,
-      maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
-      WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)"
+      maskImage: "linear-gradient(to right, transparent, black 35%, black 65%, transparent)",
+      WebkitMaskImage: "linear-gradient(to right, transparent, black 35%, black 65%, transparent)"
     }}>
       {[false, true].map((isFlipped, idx) => (
         <div key={idx} style={{
@@ -208,8 +208,8 @@ const PrefooterBackground = () => {
             <svg width="1440" height="350" viewBox="0 0 1440 350" style={{ position: "absolute", top: "50%", left: 0, transform: `translateY(-50%) scaleX(${isFlipped ? "-1" : "1"})`, width: "100%", height: "auto", overflow: "visible" }}>
               <defs>
                 <linearGradient id={`prefooterFade-${idx}`} x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="rgba(155, 70, 44, 0)" />
-                  <stop offset="100%" stopColor="rgba(155, 70, 44, 0.28)" />
+                  <stop offset={idx === 0 ? "45%" : "9%"} stopColor="#090909" stopOpacity="0" />
+                  <stop offset="100%" stopColor="#090909" stopOpacity="1" />
                 </linearGradient>
               </defs>
               {heights.map((h, i) => {
@@ -232,7 +232,7 @@ const PrefooterBackground = () => {
                   const cp2y = p2.y - (p3.y - p1.y) / 6;
                   d += `C ${cp1x},${cp1y} ${cp2x},${cp2y} ${p2.x},${p2.y} `;
                 }
-                return <path d={d} fill="none" stroke="#9B462C" strokeOpacity="0.38" strokeWidth="1" />;
+                return <path d={d} fill="none" stroke="#525252" strokeOpacity="0.68" strokeWidth="1" />;
               })()}
             </svg>
           </div>
@@ -247,15 +247,15 @@ const GlobalGridLines = () => {
     <div style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100vh", display: "flex", justifyContent: "center", pointerEvents: "none", zIndex: 3 }}>
       {/* 1440px Wrapper matching the fixed maximum widths natively */}
       <div style={{ position: "relative", width: "1440px", height: "100%" }}>
-        <div style={{ position: "absolute", left: "5.5px", top: 0, bottom: 0, width: "1px", background: "rgba(155, 70, 44, 0.1)" }} />
-        <div style={{ position: "absolute", right: "5.5px", top: 0, bottom: 0, width: "1px", background: "rgba(155, 70, 44, 0.1)" }} />
+        <div style={{ position: "absolute", left: "5.5px", top: 0, bottom: 0, width: "1px", background: "rgba(82, 82, 82, 0.12)" }} />
+        <div style={{ position: "absolute", right: "5.5px", top: 0, bottom: 0, width: "1px", background: "rgba(82, 82, 82, 0.12)" }} />
       </div>
     </div>
   );
 };
 
 const HorizontalGridDivider = ({ position = "bottom" }: { position?: "top" | "bottom" }) => (
-  <div style={{ position: "absolute", [position]: 0, left: "50%", transform: "translateX(-50%)", width: "100%", maxWidth: "1429px", height: "1px", background: "rgba(155, 70, 44, 0.1)", pointerEvents: "none", zIndex: 0 }} />
+  <div style={{ position: "absolute", [position]: 0, left: "50%", transform: "translateX(-50%)", width: "100%", maxWidth: "1429px", height: "1px", background: "rgba(82, 82, 82, 0.12)", pointerEvents: "none", zIndex: 0 }} />
 );
 
 export default function Home() {
@@ -364,7 +364,7 @@ export default function Home() {
             {/* GRAYFORGE */}
             <a
               href="#top"
-                            onClick={(e) => { e.preventDefault(); lenisRef.current?.scrollTo(0); }}
+              onClick={(e) => { e.preventDefault(); lenisRef.current?.scrollTo(0); }}
               style={{ textDecoration: "none" }}
             >
               <div
@@ -427,7 +427,9 @@ export default function Home() {
             }}
           >
             {/* Strategy */}
-            <div
+            <a
+              href="#strategy"
+              onClick={(e) => { e.preventDefault(); lenisRef.current?.scrollTo("#strategy"); }}
               style={{
                 width: "max-content",
                 height: "max-content",
@@ -445,13 +447,16 @@ export default function Home() {
                 order: 0,
                 flexGrow: 0,
                 whiteSpace: "nowrap",
+                textDecoration: "none",
               }}
             >
               <HoverMenuText text="Strategy" />
-            </div>
+            </a>
 
             {/* Work */}
-            <div
+            <a
+              href="#work"
+              onClick={(e) => { e.preventDefault(); lenisRef.current?.scrollTo("#work"); }}
               style={{
                 width: "max-content",
                 height: "max-content",
@@ -466,13 +471,16 @@ export default function Home() {
                 flex: "none",
                 order: 1,
                 flexGrow: 0,
+                textDecoration: "none",
               }}
             >
               <HoverMenuText text="Work" />
-            </div>
+            </a>
 
             {/* About Us */}
-            <div
+            <a
+              href="#about-us"
+              onClick={(e) => { e.preventDefault(); lenisRef.current?.scrollTo("#about-us"); }}
               style={{
                 width: "max-content",
                 height: "max-content",
@@ -490,65 +498,67 @@ export default function Home() {
                 order: 2,
                 flexGrow: 0,
                 whiteSpace: "nowrap",
+                textDecoration: "none",
               }}
             >
               <HoverMenuText text="About Us" />
-            </div>
+            </a>
           </div>
 
-          {/* Button */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              padding: "2px 12px",
-              gap: "8px",
-              margin: "0",
-              width: "max-content",
-              height: "max-content",
-              background: "#FFFFFF",
-              boxShadow:
-                "0px 2px 6px rgba(232, 42, 0, 0.25), inset 0px -6px 40px rgba(255, 152, 115, 0.6)",
-              borderRadius: "1px",
-              flex: "none",
-              order: 1,
-              flexGrow: 0,
-            }}
-          >
-            {/* CONNECT */}
+          {/* CONNECT Button */}
+          <a href="/connect" style={{ textDecoration: "none" }}>
             <div
               style={{
-                width: "max-content",
-                height: "max-content",
-                fontFamily: "'SF Compact', sans-serif",
-                fontStyle: "normal",
-                fontWeight: 556,
-                fontSize: "12px",
-                lineHeight: "22px",
                 display: "flex",
+                flexDirection: "row",
                 justifyContent: "center",
                 alignItems: "center",
-                textAlign: "center",
-                letterSpacing: "-0.04em",
-                color: "#ff1500ff",
-                textShadow: "0px 2px 8px rgba(255, 255, 255, 0.96)",
+                padding: "2px 12px",
+                gap: "8px",
+                margin: "0",
+                width: "max-content",
+                height: "max-content",
+                background: "#FFFFFF",
+                boxShadow: "0px 2px 6px rgba(232, 42, 0, 0.25), inset 0px -6px 40px rgba(255, 152, 115, 0.6)",
+                borderRadius: "1px",
                 flex: "none",
-                order: 0,
+                order: 1,
                 flexGrow: 0,
+                cursor: "pointer",
               }}
             >
-              <HoverMenuText text="CONNECT" hoverColor="#9F1000" />
+              <div
+                style={{
+                  width: "max-content",
+                  height: "max-content",
+                  fontFamily: "'SF Compact', sans-serif",
+                  fontStyle: "normal",
+                  fontWeight: 556,
+                  fontSize: "12px",
+                  lineHeight: "22px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  textAlign: "center",
+                  letterSpacing: "-0.04em",
+                  color: "#ff1500ff",
+                  textShadow: "0px 2px 8px rgba(255, 255, 255, 0.96)",
+                  flex: "none",
+                  order: 0,
+                  flexGrow: 0,
+                }}
+              >
+                <HoverMenuText text="CONNECT" hoverColor="#9F1000" />
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       </nav>
 
       {/* The rest of the landing page content will go below */}
       <div className="flex flex-col w-full flex-grow" style={{ position: "relative", zIndex: 2, pointerEvents: "none" }}>
         {/* Section 1 */}
-        <section className="w-full min-h-screen flex flex-col justify-end px-[50px] py-[32px] box-border relative" style={{ background: "#090909", pointerEvents: "auto" }}>
+        <section className="w-full min-h-screen flex flex-col justify-end px-0 py-[32px] box-border relative" style={{ background: "#090909", pointerEvents: "auto" }}>
           <FoldOneBackground isStartHovered={isInitialGlow} />
 
           {/* X-Axis Data Month Tracker */}
@@ -567,17 +577,18 @@ export default function Home() {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "flex-start",
-              padding: "42px 0px 49px",
+              padding: "42px 0px 49px 50px",
               gap: "50px",
-              maxWidth: "1340px",
+              maxWidth: "1440px",
               width: "100%",
               height: "max-content",
-              margin: "0 auto", // Mid-align horizontally
+              margin: "0 auto",
               flex: "none",
               order: 0,
               alignSelf: "stretch",
               flexGrow: 0,
               zIndex: 0,
+              background: "linear-gradient(to bottom, rgba(9, 9, 9, 0) 0%, #090909aa 60%, rgba(9, 9, 9, 0) 80%)",
             }}
           >
             {/* Text */}
@@ -588,7 +599,7 @@ export default function Home() {
                 alignItems: "flex-start",
                 padding: "0px",
                 gap: "12px",
-                maxWidth: "1340px",
+                maxWidth: "1440px",
                 width: "100%",
                 height: "max-content",
                 flex: "none",
@@ -677,7 +688,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Connect */}
             <div
               style={{
                 display: "flex",
@@ -694,50 +704,53 @@ export default function Home() {
                 flexGrow: 0,
               }}
             >
-              {/* Button */}
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  padding: "10px 20px",
-                  gap: "10px",
-                  width: "260px",
-                  height: "48px",
-                  background: "linear-gradient(#FF4F19, #FF4F19) padding-box, linear-gradient(to bottom, rgba(255,160,131,0.18), rgba(189,48,5,0.18)) border-box",
-                  border: "1px solid transparent",
-                  boxShadow: "0px 2px 6px rgba(232, 42, 0, 0.25), inset 0px -6px 40px rgba(219, 7, 0, 0.8)",
-                  borderRadius: "1px",
-                  flex: "none",
-                  order: 0,
-                  flexGrow: 0,
-                }}
-              >
-                {/* START SCALING */}
+              <a href="/connect" style={{ textDecoration: "none" }}>
                 <div
                   style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    padding: "14px 84px",
+                    gap: "10px",
                     width: "max-content",
                     height: "max-content",
-                    fontFamily: "'SF Compact', sans-serif",
-                    fontStyle: "normal",
-                    fontWeight: 556,
-                    fontSize: "16px",
-                    lineHeight: "20px",
-                    display: "flex",
-                    alignItems: "center",
-                    textAlign: "center",
-                    letterSpacing: "0px",
-                    color: "#140101",
-                    textShadow: "0px 2px 8px rgba(255, 78, 19, 0.93)",
+                    background: "#FFFFFF",
+                    boxShadow: "0px 2px 6px rgba(232, 42, 0, 0.25), inset 0px -6px 40px rgba(255, 152, 115, 0.6)",
+                    borderRadius: "1px",
+                    transform: "matrix(1, 0, 0, -1, 0, 0)",
                     flex: "none",
                     order: 0,
                     flexGrow: 0,
+                    cursor: "pointer",
                   }}
                 >
-                  <HoverMenuText text="START SCALING" hoverColor="#FFFFFF" />
+                  {/* START SCALING */}
+                  <div
+                    style={{
+                      width: "max-content",
+                      height: "max-content",
+                      fontFamily: "'SF Compact', sans-serif",
+                      fontStyle: "normal",
+                      fontWeight: 556,
+                      fontSize: "16px",
+                      lineHeight: "22px",
+                      display: "flex",
+                      alignItems: "center",
+                      textAlign: "center",
+                      letterSpacing: "-0.04em",
+                      color: "#F24C1A",
+                      textShadow: "0px 2px 8px rgba(255, 255, 255, 0.93)",
+                      flex: "none",
+                      order: 0,
+                      flexGrow: 0,
+                      transform: "matrix(1, 0, 0, -1, 0, 0)", // Flip text back
+                    }}
+                  >
+                    <HoverMenuText text="START SCALING" hoverColor="#F24C1A" />
+                  </div>
                 </div>
-              </div>
+              </a>
 
               {/* View Performance Data Button */}
               <div
@@ -915,7 +928,7 @@ export default function Home() {
         </div>
 
         {/* Section 2 */}
-        <section className="w-full min-h-screen flex flex-col px-[50px] pt-[16px] pb-[32px] box-border relative" style={{ background: "#090909", pointerEvents: "auto" }}>
+        <section id="strategy" className="w-full min-h-screen flex flex-col px-[50px] pt-[16px] pb-[32px] box-border relative" style={{ background: "#090909", pointerEvents: "auto" }}>
           <div
             style={{
               display: "flex",
@@ -1064,40 +1077,43 @@ export default function Home() {
                       order: 1,
                     }}
                   >
-                    {/* Button */}
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        padding: "8px 24px",
-                        gap: "10px",
-                        background: "#FFFFFF",
-                        boxShadow: "0px 2px 6px rgba(232, 42, 0, 0.25), inset 0px -6px 40px rgba(255, 152, 115, 0.6)",
-                        borderRadius: "1px",
-                        flex: "none",
-                        order: 0,
-                      }}
-                    >
+                    {/* MARK YOUR DOMINANCE Button */}
+                    <a href="/connect" style={{ textDecoration: "none" }}>
                       <div
                         style={{
-                          fontFamily: "'SF Compact', sans-serif",
-                          fontStyle: "normal",
-                          fontWeight: 556,
-                          fontSize: "14px",
-                          lineHeight: "24px",
                           display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "center",
                           alignItems: "center",
-                          textAlign: "center",
-                          letterSpacing: "0px",
-                          color: "#F24C1A",
-                          textShadow: "0px 2px 8px rgba(255, 255, 255, 0.93)",
+                          padding: "8px 24px",
+                          gap: "10px",
+                          background: "#FFFFFF",
+                          boxShadow: "0px 2px 6px rgba(232, 42, 0, 0.25), inset 0px -6px 40px rgba(255, 152, 115, 0.6)",
+                          borderRadius: "1px",
+                          flex: "none",
+                          order: 0,
+                          cursor: "pointer",
                         }}
                       >
-                        <HoverMenuText text="MARK YOUR DOMINANCE" hoverColor="#9F1000" />
+                        <div
+                          style={{
+                            fontFamily: "'SF Compact', sans-serif",
+                            fontStyle: "normal",
+                            fontWeight: 556,
+                            fontSize: "14px",
+                            lineHeight: "24px",
+                            display: "flex",
+                            alignItems: "center",
+                            textAlign: "center",
+                            letterSpacing: "0px",
+                            color: "#F24C1A",
+                            textShadow: "0px 2px 8px rgba(255, 255, 255, 0.93)",
+                          }}
+                        >
+                          <HoverMenuText text="MARK YOUR DOMINANCE" hoverColor="#9F1000" />
+                        </div>
                       </div>
-                    </div>
+                    </a>
                   </div>
                 </div>
 
@@ -1221,12 +1237,13 @@ export default function Home() {
 
         {/* Section 3 - PROCESS */}
         <section
+          id="about-us"
           className="w-full flex justify-center box-border relative"
-          style={{ 
-            background: "#090909", 
+          style={{
+            background: "#090909",
             height: "962px",
             zIndex: 7,
-            pointerEvents: "auto" 
+            pointerEvents: "auto"
           }}
         >
           {/* Inner Wrapper (Grid Alignment) */}
@@ -1354,50 +1371,51 @@ export default function Home() {
                     order: i,
                   }}
                 >
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    alignItems: "flex-start",
-                    padding: "0px",
-                    gap: "12px",
-                    width: "360px",
-                    height: "446px",
-                    flex: "none",
-                    flexGrow: 1,
-                  }}
-                >
-                  {/* Brand */}
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px", margin: "0 auto", width: "70px", height: "20px", flex: "none", order: 0 }}>
-                    <div style={{ width: "70px", height: "20px", fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "20px", display: "flex", alignItems: "center", textAlign: "right", color: "#BCBCBC" }}>
-                      {card.brand}
-                    </div>
-                  </div>
-
-                  {/* Metrics */}
-                  <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start", padding: "0px", gap: "10px", margin: "0 auto", width: "360px", height: "52px", flex: "none", order: 1 }}>
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px", margin: "0 auto", width: "124px", height: "28px", flex: "none" }}>
-                      <div style={{ width: "124px", height: "28px", fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", textAlign: "right", color: "#D3D3D3" }}>
-                        {card.roas}
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                      padding: "0px",
+                      gap: "12px",
+                      width: "360px",
+                      height: "446px",
+                      flex: "none",
+                      flexGrow: 1,
+                    }}
+                  >
+                    {/* Brand */}
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px", margin: "0 auto", width: "70px", height: "20px", flex: "none", order: 0 }}>
+                      <div style={{ width: "70px", height: "20px", fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "20px", display: "flex", alignItems: "center", textAlign: "right", color: "#BCBCBC" }}>
+                        {card.brand}
                       </div>
                     </div>
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px", margin: "0 auto", width: "360px", height: "22px", flex: "none" }}>
-                      <div style={{ width: "224px", height: "22px", fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", display: "flex", alignItems: "center", color: "#7C7C7C" }}>
-                        {card.revenue}
+
+                    {/* Metrics */}
+                    <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start", padding: "0px", gap: "10px", margin: "0 auto", width: "360px", height: "52px", flex: "none", order: 1 }}>
+                      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px", margin: "0 auto", width: "124px", height: "28px", flex: "none" }}>
+                        <div style={{ width: "124px", height: "28px", fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", textAlign: "right", color: "#D3D3D3" }}>
+                          {card.roas}
+                        </div>
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px", margin: "0 auto", width: "360px", height: "22px", flex: "none" }}>
+                        <div style={{ width: "224px", height: "22px", fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", display: "flex", alignItems: "center", color: "#7C7C7C" }}>
+                          {card.revenue}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </FadeInBlock>
+              ))}
+            </FadeInBlock>
           </div>
           <HorizontalGridDivider />
         </section>
 
         {/* Section 4 - OUR WORK (Previously Process) */}
         <section
+          id="work"
           className="w-full flex flex-col box-border relative"
           style={{ padding: "90px 50px 106px", gap: "120px", background: "#090909", pointerEvents: "auto" }}
         >
@@ -1747,43 +1765,53 @@ export default function Home() {
                 </div>
               </div>
 
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  padding: "6px 24px",
-                  gap: "10px",
-                  width: "250px",
-                  height: "46px",
-                  background: "linear-gradient(#FF4F19, #FF4F19) padding-box, linear-gradient(to bottom, rgba(255,160,131,0.18), rgba(189,48,5,0.18)) border-box",
-                  border: "1px solid transparent",
-                  boxShadow: "0px 2px 6px rgba(232, 42, 0, 0.25), inset 0px -6px 40px rgba(219, 7, 0, 0.8)",
-                  borderRadius: "1px",
-                  cursor: "pointer",
-                }}
-              >
+              <a href="/connect" style={{ textDecoration: "none" }}>
                 <div
                   style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    padding: "12px 46px",
+                    gap: "10px",
                     width: "max-content",
                     height: "max-content",
-                    fontFamily: "'SF Compact', sans-serif",
-                    fontStyle: "normal",
-                    fontWeight: 556,
-                    fontSize: "14px",
-                    lineHeight: "24px",
-                    display: "flex",
-                    alignItems: "center",
-                    textAlign: "center",
-                    letterSpacing: "0px",
-                    color: "#140101",
-                    textShadow: "0px 2px 8px rgba(255, 78, 19, 0.93)",
+                    background: "#FFFFFF",
+                    boxShadow: "0px 2px 6px rgba(232, 42, 0, 0.25), inset 0px -6px 40px rgba(255, 152, 115, 0.6)",
+                    borderRadius: "1px",
+                    transform: "matrix(1, 0, 0, -1, 0, 0)",
+                    flex: "none",
+                    order: 1,
+                    flexGrow: 0,
+                    cursor: "pointer",
                   }}
                 >
-                  <HoverMenuText text="PARTNER WITH US" hoverColor="#FFFFFF" />
+                  {/* PARTNER WITH US */}
+                  <div
+                    style={{
+                      width: "max-content",
+                      height: "max-content",
+                      fontFamily: "'SF Compact', sans-serif",
+                      fontStyle: "normal",
+                      fontWeight: 556,
+                      fontSize: "16px",
+                      lineHeight: "21px",
+                      display: "flex",
+                      alignItems: "center",
+                      textAlign: "center",
+                      letterSpacing: "-0.04em",
+                      color: "#F24C1A",
+                      textShadow: "0px 2px 8px rgba(255, 255, 255, 0.93)",
+                      flex: "none",
+                      order: 0,
+                      flexGrow: 0,
+                      transform: "matrix(1, 0, 0, -1, 0, 0)", // Flip text back
+                    }}
+                  >
+                    <HoverMenuText text="PARTNER WITH US" hoverColor="#F24C1A" />
+                  </div>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
           <HorizontalGridDivider />
@@ -1801,7 +1829,7 @@ export default function Home() {
           bottom: 0,
           left: 0,
           height: "683px",
-          background: "radial-gradient(163.57% 163.57% at 65.42% -28.18%, #090909 45%, #1B0904 55%, #290D05 65%, #932C0D 100%)",
+          background: "radial-gradient(163.57% 163.57% at 65.42% -28.18%, #090909 29.12%, #090909 50.37%, #0A0A0A 59.95%, #262626 100%)",
           zIndex: 1,
           pointerEvents: "auto",
         }}
@@ -1864,7 +1892,7 @@ export default function Home() {
                   <a
                     key={page}
                     href="#top"
-                                  onClick={(e) => { e.preventDefault(); lenisRef.current?.scrollTo(0); }}
+                    onClick={(e) => { e.preventDefault(); lenisRef.current?.scrollTo(0); }}
                     className="text-[#B2B2B2]"
                     style={{
                       fontFamily: "'SF Pro', sans-serif",
@@ -1957,13 +1985,14 @@ export default function Home() {
                     lineHeight: "22px",
                     textTransform: "uppercase",
                     textAlign: "right",
+                    opacity: 0.6,
                   }}
                 >
-                  <HoverMenuText text="PRIVACY" hoverColor="#DA5932" />
+                  <HoverMenuText text="PRIVACY POLICY" hoverColor="#DA5932" />
                 </div>
               </div>
               {/* Vector 416 */}
-              <div style={{ width: "100%", height: "0px", border: "1px solid #2b140dff", alignSelf: "stretch" }} />
+              <div style={{ width: "100%", height: "0px", border: "1px solid rgba(40, 33, 31, 0.3)", alignSelf: "stretch" }} />
             </div>
 
             {/* Bottom Row (Info + Branding) - 64px height */}
@@ -1985,7 +2014,7 @@ export default function Home() {
                   fontWeight: 457,
                   fontSize: "10px",
                   lineHeight: "14px",
-                  color: "#A95B43",
+                  color: "#5A5350",
                   whiteSpace: "nowrap",
                 }}
               >
