@@ -263,6 +263,32 @@ export default function Home() {
   const [isInitialGlow, setIsInitialGlow] = useState(false);
 
   const lenisRef = useRef<Lenis | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(true);
+
+  const updateScrollButtons = () => {
+    if (carouselRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+      setCanScrollPrev(scrollLeft > 10);
+      setCanScrollNext(scrollLeft + clientWidth < scrollWidth - 10);
+    }
+  };
+
+  const scrollNext = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: 692, behavior: "smooth" });
+      setTimeout(updateScrollButtons, 500);
+    }
+  };
+
+  const scrollPrev = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -692, behavior: "smooth" });
+      setTimeout(updateScrollButtons, 500);
+    }
+  };
 
   useEffect(() => {
     // Initialize Lenis smooth scroll
@@ -1203,30 +1229,30 @@ export default function Home() {
             >
               {/* 01 Metrics */}
               <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", gap: "8px" }}>
-                <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "18px", lineHeight: "24px", color: "#C7C7C7" }}>
+                <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "18px", lineHeight: "24px", color: "#7C7C7C" }}>
                   Brands scaled
                 </div>
-                <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 274, fontSize: "90px", lineHeight: "96px", color: "#DDDDDD", letterSpacing: "-0.04em", marginLeft: "-10px" }}>
+                <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 274, fontSize: "90px", lineHeight: "96px", color: "#D3D3D3", opacity: 0.88, letterSpacing: "-0.04em", marginLeft: "-10px" }}>
                   <MeterText text="100 +" />
                 </div>
               </div>
 
               {/* 02 Metrics */}
               <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", gap: "8px" }}>
-                <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "18px", lineHeight: "24px", color: "#C7C7C7" }}>
+                <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "18px", lineHeight: "24px", color: "#7C7C7C" }}>
                   Campaigns Executed
                 </div>
-                <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 274, fontSize: "90px", lineHeight: "96px", color: "#DDDDDD", letterSpacing: "-0.04em", marginLeft: "-4px" }}>
+                <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 274, fontSize: "90px", lineHeight: "96px", color: "#D3D3D3", opacity: 0.88, letterSpacing: "-0.04em", marginLeft: "-4px" }}>
                   <MeterText text="2.4k" />
                 </div>
               </div>
 
               {/* 03 Metrics */}
               <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", gap: "8px" }}>
-                <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "18px", lineHeight: "24px", color: "#C7C7C7" }}>
+                <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "18px", lineHeight: "24px", color: "#7C7C7C" }}>
                   Revenues Generated
                 </div>
-                <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 274, fontSize: "90px", lineHeight: "96px", color: "#DDDDDD", letterSpacing: "-0.04em", marginLeft: "-4px" }}>
+                <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 274, fontSize: "90px", lineHeight: "96px", color: "#D3D3D3", opacity: 0.88, letterSpacing: "-0.04em", marginLeft: "-4px" }}>
                   <MeterText text="$7.5m +" />
                 </div>
               </div>
@@ -1365,8 +1391,8 @@ export default function Home() {
                     gap: "20px",
                     width: "400px",
                     height: "486px",
-                    background: "#141414",
-                    border: "1px solid #1F1F1F",
+                    background: "#101010ce",
+                    border: "0.8px solid #1F1F1Fcf",
                     flex: "none",
                     order: i,
                   }}
@@ -1386,8 +1412,8 @@ export default function Home() {
                     }}
                   >
                     {/* Brand */}
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px", margin: "0 auto", width: "70px", height: "20px", flex: "none", order: 0 }}>
-                      <div style={{ width: "70px", height: "20px", fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "20px", display: "flex", alignItems: "center", textAlign: "right", color: "#BCBCBC" }}>
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px", margin: "0 auto", width: "70px", height: "16px", flex: "none", order: 0 }}>
+                      <div style={{ width: "70px", height: "16px", fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "16px", display: "flex", alignItems: "center", textAlign: "right", color: "#BCBCBC", opacity: 0.88 }}>
                         {card.brand}
                       </div>
                     </div>
@@ -1395,7 +1421,7 @@ export default function Home() {
                     {/* Metrics */}
                     <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start", padding: "0px", gap: "10px", margin: "0 auto", width: "360px", height: "52px", flex: "none", order: 1 }}>
                       <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px", margin: "0 auto", width: "124px", height: "28px", flex: "none" }}>
-                        <div style={{ width: "124px", height: "28px", fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", textAlign: "right", color: "#D3D3D3" }}>
+                        <div style={{ width: "124px", height: "28px", fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", textAlign: "right", color: "#D3D3D3", opacity: 0.88 }}>
                           {card.roas}
                         </div>
                       </div>
@@ -1539,156 +1565,272 @@ export default function Home() {
           </FadeInBlock>
 
           {/* Case study carousal */}
-          <FadeInBlock as="div"
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              padding: "0px",
-              gap: "44px",
-              width: "100%",
-              maxWidth: "1340px",
-              margin: "0 auto",
-              flex: "none",
-              order: 1,
-            }}
-          >
-            {/* Zyrotech Card */}
-            <div
-              style={{
-                boxSizing: "border-box",
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "stretch",
-                padding: "20px",
-                gap: "20px",
-                width: "648px",
-                height: "270px",
-                background: "#141414ce",
-                border: "0.8px solid #1f1f1fcf",
-                borderRadius: "4px",
-                flex: "none",
-                order: 0,
-              }}
-            >
-              {/* Details */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "100%", maxWidth: "1340px", margin: "0 auto" }}>
+            <div style={{ display: "flex", justifyContent: "flex-end", gap: "8px" }}>
+              {/* Previous Button */}
               <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  alignItems: "flex-start",
-                  padding: "0px",
-                  gap: "12px",
-                  width: "240px",
-                  height: "100%",
-                }}
+                onClick={scrollPrev}
+                style={{ boxSizing: "border-box", display: "flex", justifyContent: "center", alignItems: "center", width: "32px", height: "32px", border: "1px solid #1F1F1F", borderRadius: "2px", cursor: canScrollPrev ? "pointer" : "default", opacity: canScrollPrev ? 1 : 0.3, transition: "opacity 0.3s ease" }}
               >
-                {/* Brand */}
-                <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "20px", display: "flex", alignItems: "center", textAlign: "right", color: "#BCBCBC" }}>
-                  Zyrotech
-                </div>
-
-                {/* Metrics */}
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "4px" }}>
-                  <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", color: "#D3D3D3" }}>
-                    3.8x ROAS
-                  </div>
-                  <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", display: "flex", alignItems: "center", color: "#7C7C7C" }}>
-                    Revenue : $0 to $58k / month
-                  </div>
-                </div>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8L10 12" stroke="#8A8A8A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </div>
-
-              {/* Divider */}
-              <div style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "0px", gap: "10px", width: "0px", height: "100%" }}>
-                <div style={{ width: "0px", height: "100%", border: "0.8px dashed #202020e2", opacity: 0.68 }}></div>
-              </div>
-
-              {/* Praise */}
+              {/* Next Button */}
               <div
+                onClick={scrollNext}
+                style={{ boxSizing: "border-box", display: "flex", justifyContent: "center", alignItems: "center", width: "32px", height: "32px", border: "1px solid #1F1F1F", borderRadius: "2px", cursor: canScrollNext ? "pointer" : "default", opacity: canScrollNext ? 1 : 0.3, transition: "opacity 0.3s ease" }}
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="#8A8A8A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              </div>
+            </div>
+
+            <FadeInBlock as="div" style={{ width: "100%", flex: "none", order: 1 }}>
+              <div
+                ref={carouselRef}
+                onScroll={updateScrollButtons}
                 style={{
                   display: "flex",
                   flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "flex-end",
-                  padding: "20px",
-                  gap: "12px",
-                  width: "264px",
-                  height: "100%",
-                }}
-              ></div>
-            </div>
-
-            {/* Subliminal Card */}
-            <div
-              style={{
-                boxSizing: "border-box",
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "stretch",
-                padding: "20px",
-                gap: "20px",
-                width: "648px",
-                height: "270px",
-                background: "#141414ce",
-                border: "0.8px solid #1F1F1Fcf",
-                borderRadius: "4px",
-                flex: "none",
-                order: 1,
-              }}
-            >
-              {/* Details */}
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  alignItems: "flex-start",
+                  alignItems: "center",
                   padding: "0px",
-                  gap: "12px",
-                  width: "240px",
-                  height: "100%",
+                  gap: "44px",
+                  width: "100%",
+                  overflowX: "hidden",
+                  scrollBehavior: "smooth",
                 }}
               >
-                {/* Brand */}
-                <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "20px", display: "flex", alignItems: "center", textAlign: "right", color: "#BCBCBC" }}>
-                  Subliminal
-                </div>
+                {/* Zyrotech Card */}
+                <a href="/work/zyrotech" style={{ textDecoration: "none", color: "inherit" }}>
+                  <div
+                    style={{
+                      boxSizing: "border-box",
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "stretch",
+                      padding: "20px",
+                      gap: "8px",
+                      width: "648px",
+                      height: "270px",
+                      background: "#101010ce",
+                      border: "0.8px solid #1f1f1fcf",
+                      borderRadius: "4px",
+                      flex: "none",
+                      order: 0,
+                      cursor: "pointer",
+                    }}
+                  >
+                  {/* Details */}
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                      padding: "0px",
+                      gap: "12px",
+                      width: "240px",
+                      height: "100%",
+                    }}
+                  >
+                    {/* Brand */}
+                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "20px", display: "flex", alignItems: "center", textAlign: "right", color: "#BCBCBC", opacity: 0.88 }}>
+                      Meta Ads - Ecommerce
+                    </div>
 
-                {/* Metrics */}
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "4px" }}>
-                  <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", color: "#D3D3D3" }}>
-                    6.1x ROAS
+                    {/* Metrics */}
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "4px" }}>
+                      <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", color: "#D3D3D3", opacity: 0.88 }}>
+                        10.11x ROAS
+                      </div>
+                      <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", display: "flex", alignItems: "center", color: "#7C7C7C" }}>
+                        ₹58k revenue on ₹5.7k spent
+                      </div>
+                    </div>
                   </div>
-                  <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", display: "flex", alignItems: "center", color: "#7C7C7C" }}>
-                    Revenue : $12 to $65k / month
+
+                  {/* Right Content Group (Divider + Insight) */}
+                  <div style={{ display: "flex", flexDirection: "row", alignItems: "stretch", gap: "24px", height: "100%" }}>
+                    {/* Divider */}
+                    <div style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "0px", gap: "10px", width: "0px", height: "100%" }}>
+                      <div style={{ width: "0px", height: "100%", border: "0.8px dashed #202020e2", opacity: 0.68 }}></div>
+                    </div>
+
+                    {/* Praise */}
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "flex-start",
+                        alignItems: "flex-start",
+                        padding: "0px 2px",
+                        width: "264px",
+                        height: "100%",
+                      }}
+                    >
+                      <p style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 300, fontSize: "15px", lineHeight: "22px", letterSpacing: 0, color: "#686868ff", margin: 0 }}>
+                        Maintained elite-level returns on a lean budget with zero underperforming campaigns.
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </a>
 
-              {/* Divider */}
-              <div style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "0px", gap: "10px", width: "0px", height: "100%" }}>
-                <div style={{ width: "0px", height: "100%", border: "0.8px dashed #202020e2", opacity: 0.68 }}></div>
-              </div>
+                {/* Subliminal Card */}
+                <a href="/work/subliminal" style={{ textDecoration: "none", color: "inherit" }}>
+                  <div
+                    style={{
+                      boxSizing: "border-box",
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "stretch",
+                      padding: "20px",
+                      gap: "8px",
+                      width: "648px",
+                      height: "270px",
+                      background: "#101010ce",
+                      border: "0.8px solid #1F1F1Fcf",
+                      borderRadius: "4px",
+                      flex: "none",
+                      order: 1,
+                      cursor: "pointer",
+                    }}
+                  >
+                  {/* Details */}
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                      padding: "0px",
+                      gap: "12px",
+                      width: "240px",
+                      height: "100%",
+                    }}
+                  >
+                    {/* Brand */}
+                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "20px", display: "flex", alignItems: "center", textAlign: "right", color: "#BCBCBC", opacity: 0.88 }}>
+                      Meta Ads - Ecommerce
+                    </div>
 
-              {/* Praise */}
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "flex-end",
-                  padding: "20px",
-                  gap: "12px",
-                  width: "264px",
-                  height: "100%",
-                }}
-              ></div>
-            </div>
-          </FadeInBlock>
+                    {/* Metrics */}
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "4px" }}>
+                      <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", color: "#D3D3D3", opacity: 0.88 }}>
+                        6.83x Avg ROAS
+                      </div>
+                      <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", display: "flex", alignItems: "center", color: "#7C7C7C" }}>
+                        ₹4.37L revenue generated
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Content Group (Divider + Insight) */}
+                  <div style={{ display: "flex", flexDirection: "row", alignItems: "stretch", gap: "24px", height: "100%" }}>
+                    {/* Divider */}
+                    <div style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "0px", gap: "10px", width: "0px", height: "100%" }}>
+                      <div style={{ width: "0px", height: "100%", border: "0.8px dashed #202020e2", opacity: 0.68 }}></div>
+                    </div>
+
+                    {/* Praise */}
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "flex-start",
+                        alignItems: "flex-start",
+                        padding: "0px 2px",
+                        width: "264px",
+                        height: "100%",
+                      }}
+                    >
+                      <p style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 300, fontSize: "15px", lineHeight: "22px", letterSpacing: 0, color: "#686868ff", margin: 0 }}>
+                        Drove high purchase volume on Meta while keeping returns well above target.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+
+                {/* 3rd Card - Google Shopping */}
+                <a href="/work/google-shopping" style={{ textDecoration: "none", color: "inherit" }}>
+                  <div
+                    style={{
+                      boxSizing: "border-box",
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "stretch",
+                      padding: "20px",
+                      gap: "8px",
+                      width: "648px",
+                      height: "270px",
+                      background: "#101010ce",
+                      border: "0.8px solid #1F1F1Fcf",
+                      borderRadius: "4px",
+                      flex: "none",
+                      order: 2,
+                      cursor: "pointer",
+                    }}
+                  >
+                  {/* Details */}
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                      padding: "0px",
+                      gap: "12px",
+                      width: "240px",
+                      height: "100%",
+                    }}
+                  >
+                    {/* Brand */}
+                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "20px", display: "flex", alignItems: "center", textAlign: "right", color: "#BCBCBC", opacity: 0.88 }}>
+                      Google Shopping - Ecommerce
+                    </div>
+
+                    {/* Metrics */}
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "4px" }}>
+                      <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", color: "#D3D3D3", opacity: 0.88 }}>
+                        3.41x Avg ROAS
+                      </div>
+                      <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", display: "flex", alignItems: "center", color: "#7C7C7C" }}>
+                        ₹3.41L Revenue Generated
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Content Group (Divider + Insight) */}
+                  <div style={{ display: "flex", flexDirection: "row", alignItems: "stretch", gap: "24px", height: "100%" }}>
+                    {/* Divider */}
+                    <div style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "0px", gap: "10px", width: "0px", height: "100%" }}>
+                      <div style={{ width: "0px", height: "100%", border: "0.8px dashed #202020e2", opacity: 0.68 }}></div>
+                    </div>
+
+                    {/* Praise */}
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "flex-start",
+                        alignItems: "flex-start",
+                        padding: "0px 2px",
+                        width: "264px",
+                        height: "100%",
+                      }}
+                    >
+                      <p style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 300, fontSize: "15px", lineHeight: "22px", letterSpacing: 0, color: "#686868ff", margin: 0 }}>
+                        Scaled Google Shopping profitably across multiple campaigns with consistent returns.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              </div>
+            </FadeInBlock>
+          </div>
           <HorizontalGridDivider />
         </section>
 

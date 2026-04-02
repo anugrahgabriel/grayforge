@@ -98,7 +98,7 @@ const ContactForm = () => {
     }}>
       {/* Form Header */}
       <div style={{ width: "100%", marginBottom: "16px" }}>
-        <div style={{ fontFamily: "'SF Pro', sans-serif", fontSize: "18px", color: "#B2B2B2", lineHeight: "26px" }}>
+        <div style={{ fontFamily: "'SF Pro', sans-serif", fontSize: "20px", color: "#B2B2B2", lineHeight: "26px" }}>
           Write to us and we’ll get back to you !
         </div>
       </div>
@@ -480,7 +480,7 @@ export default function Connect() {
                     <h1 style={{ fontFamily: "'SF Pro', sans-serif", fontSize: "42px", color: "#DEDCDC", fontWeight: 400, lineHeight: "52px", whiteSpace: "nowrap" }}>
                       Connect for performance
                     </h1>
-                    <p style={{ fontFamily: "'SF Pro', sans-serif", fontSize: "18px", color: "#585858ff", lineHeight: "26px", maxWidth: "493px", marginTop: "-4px" }}>
+                    <p style={{ fontFamily: "'SF Pro', sans-serif", fontSize: "18px", color: "#727272ff", lineHeight: "26px", maxWidth: "493px", marginTop: "-4px" }}>
                       We don’t manage accounts. We engineer growth. Partner with us to deploy high-conviction capital into the meta ecosystem.
                     </p>
                   </div>
