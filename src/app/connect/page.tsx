@@ -395,13 +395,16 @@ export default function Connect() {
         <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "30px" }}>
           {/* Menus */}
           <div style={{ display: "flex", flexDirection: "row", gap: "26px", alignItems: "center" }}>
-            <a href="/#strategy" style={{ textDecoration: "none", color: "#dfdfdfff", fontSize: "14px", fontFamily: "'SF Pro Rounded', sans-serif" }}>
-              <HoverMenuText text="Strategy" />
-            </a>
             <a href="/#work" style={{ textDecoration: "none", color: "#dfdfdfff", fontSize: "14px", fontFamily: "'SF Pro Rounded', sans-serif" }}>
               <HoverMenuText text="Work" />
             </a>
-            <a href="/#about-us" style={{ textDecoration: "none", color: "#dfdfdfff", fontSize: "14px", fontFamily: "'SF Pro Rounded', sans-serif" }}>
+            <a href="/#process" style={{ textDecoration: "none", color: "#dfdfdfff", fontSize: "14px", fontFamily: "'SF Pro Rounded', sans-serif" }}>
+              <HoverMenuText text="Process" />
+            </a>
+            <a href="/#strategy" style={{ textDecoration: "none", color: "#dfdfdfff", fontSize: "14px", fontFamily: "'SF Pro Rounded', sans-serif" }}>
+              <HoverMenuText text="Strategy" />
+            </a>
+            <a href="/#about" style={{ textDecoration: "none", color: "#dfdfdfff", fontSize: "14px", fontFamily: "'SF Pro Rounded', sans-serif" }}>
               <HoverMenuText text="About Us" />
             </a>
           </div>
@@ -481,7 +484,7 @@ export default function Connect() {
                       Connect for performance
                     </h1>
                     <p style={{ fontFamily: "'SF Pro', sans-serif", fontSize: "18px", color: "#727272ff", lineHeight: "26px", maxWidth: "493px", marginTop: "-4px" }}>
-                      We don’t manage accounts. We engineer growth. Partner with us to deploy high-conviction capital into the meta ecosystem.
+                      We don’t manage accounts. We engineer growth. PARTNER WITH US to deploy high-conviction capital into the meta ecosystem.
                     </p>
                   </div>
                 </div>
@@ -566,11 +569,17 @@ export default function Connect() {
 
             {/* Right: Pages */}
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "14px" }}>
-              {["HOME", "WORK", "ABOUT US", "OUR STRATEGY", "PARTNERSHIP"].map((page) => (
-                page === "HOME" ? (
+              {["WORK", "PROCESS", "STRATEGY", "ABOUT US", "PARTNERSHIP"].map((page) => {
+                const href = page === "WORK" ? "/#work" :
+                  page === "PROCESS" ? "/#process" :
+                  page === "STRATEGY" ? "/#strategy" :
+                  page === "ABOUT US" ? "/#about" :
+                  "/connect";
+
+                return (
                   <a
                     key={page}
-                    href="/"
+                    href={href}
                     className="text-[#B2B2B2]"
                     style={{
                       fontFamily: "'SF Pro', sans-serif",
@@ -578,34 +587,13 @@ export default function Connect() {
                       lineHeight: "21px",
                       textAlign: "right",
                       fontWeight: 400,
-                      textDecoration: "none",
-                    }}
-                  >
-                    <HoverMenuText text="HOME" hoverColor="#DA5932" />
-                  </a>
-                ) : (
-                  <a
-                    key={page}
-                    href={
-                      page === "WORK" ? "/#work" :
-                        page === "ABOUT US" ? "/#about-us" :
-                          page === "OUR STRATEGY" ? "/#strategy" :
-                            page === "PARTNERSHIP" ? "/connect" : "/"
-                    }
-                    className="text-[#B2B2B2]"
-                    style={{
-                      fontFamily: "'SF Pro', sans-serif",
-                      fontSize: "18px",
-                      lineHeight: "21px",
-                      textAlign: "right",
-                      fontWeight: 400,
-                      textDecoration: "none",
+                      textDecoration: "none"
                     }}
                   >
                     <HoverMenuText text={page} hoverColor="#DA5932" />
                   </a>
-                )
-              ))}
+                );
+              })}
             </div>
           </div>
 

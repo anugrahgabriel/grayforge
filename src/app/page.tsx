@@ -452,10 +452,10 @@ export default function Home() {
               flexGrow: 0,
             }}
           >
-            {/* Strategy */}
+            {/* Work */}
             <a
-              href="#strategy"
-              onClick={(e) => { e.preventDefault(); lenisRef.current?.scrollTo("#strategy"); }}
+              href="#work"
+              onClick={(e) => { e.preventDefault(); lenisRef.current?.scrollTo("#work"); }}
               style={{
                 width: "max-content",
                 height: "max-content",
@@ -465,18 +465,15 @@ export default function Home() {
                 fontSize: "14px",
                 lineHeight: "23px",
                 display: "flex",
-                justifyContent: "center",
                 alignItems: "center",
-                textAlign: "center",
                 color: "#dfdfdfff",
                 flex: "none",
                 order: 0,
                 flexGrow: 0,
-                whiteSpace: "nowrap",
                 textDecoration: "none",
               }}
             >
-              <HoverMenuText text="Strategy" />
+              <HoverMenuText text="Work" />
             </a>
 
             {/* Process */}
@@ -506,10 +503,10 @@ export default function Home() {
               <HoverMenuText text="Process" />
             </a>
 
-            {/* Work */}
+            {/* Strategy */}
             <a
-              href="#work"
-              onClick={(e) => { e.preventDefault(); lenisRef.current?.scrollTo("#work"); }}
+              href="#strategy"
+              onClick={(e) => { e.preventDefault(); lenisRef.current?.scrollTo("#strategy"); }}
               style={{
                 width: "max-content",
                 height: "max-content",
@@ -519,19 +516,24 @@ export default function Home() {
                 fontSize: "14px",
                 lineHeight: "23px",
                 display: "flex",
+                justifyContent: "center",
                 alignItems: "center",
+                textAlign: "center",
                 color: "#dfdfdfff",
                 flex: "none",
                 order: 2,
                 flexGrow: 0,
+                whiteSpace: "nowrap",
                 textDecoration: "none",
               }}
             >
-              <HoverMenuText text="Work" />
+              <HoverMenuText text="Strategy" />
             </a>
 
             {/* About Us */}
-            <div
+            <a
+              href="#about"
+              onClick={(e) => { e.preventDefault(); lenisRef.current?.scrollTo("#about"); }}
               style={{
                 width: "max-content",
                 height: "max-content",
@@ -549,11 +551,12 @@ export default function Home() {
                 order: 3,
                 flexGrow: 0,
                 whiteSpace: "nowrap",
-                cursor: "default",
+                textDecoration: "none",
+                cursor: "pointer",
               }}
             >
               <HoverMenuText text="About Us" />
-            </div>
+            </a>
           </div>
 
           {/* CONNECT Button */}
@@ -798,7 +801,7 @@ export default function Home() {
                       transform: "matrix(1, 0, 0, -1, 0, 0)", // Flip text back
                     }}
                   >
-                    <HoverMenuText text="Start Scaling" hoverColor="#F24C1A" />
+                    <HoverMenuText text="START SCALING" hoverColor="#F24C1A" />
                   </div>
                 </div>
               </a>
@@ -1423,12 +1426,12 @@ export default function Home() {
                     </div>
 
                     {/* Brand / Header */}
-                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", color: step.title === "Final Delivery" ? "#E88264" : "#BCBCBC", opacity: 0.95 }}>
+                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", color: step.title === "Final Delivery" ? "#E88264" : "#979797ff", opacity: 0.95 }}>
                       {step.title}
                     </div>
 
                     {/* Description */}
-                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", color: "#7C7C7C", marginTop: "4px" }}>
+                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", color: "#4f4f4fff", marginTop: "10px" }}>
                       {step.desc}
                     </div>
                   </div>
@@ -1482,19 +1485,7 @@ export default function Home() {
               }}
             >
               {/* Left (H) */}
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                  padding: "0px",
-                  gap: "12px",
-                  maxWidth: "603px",
-                  width: "100%",
-                  flex: "none",
-                  order: 0,
-                }}
-              >
+              <div id="about" style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px", gap: "12px", maxWidth: "603px", width: "100%", flex: "none", order: 0 }}>
                 <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "42px", lineHeight: "52px", display: "flex", alignItems: "center", color: "#DEDCDC", whiteSpace: "nowrap" }}>
                   Why Us?
                 </div>
@@ -1950,7 +1941,7 @@ export default function Home() {
                       transform: "matrix(1, 0, 0, -1, 0, 0)", // Flip text back
                     }}
                   >
-                    <HoverMenuText text="Partner with us" hoverColor="#F24C1A" />
+                    <HoverMenuText text="PARTNER WITH US" hoverColor="#F24C1A" />
                   </div>
                 </div>
               </a>
@@ -2029,12 +2020,24 @@ export default function Home() {
 
             {/* Right: Pages */}
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "14px" }}>
-              {["HOME", "STRATEGY", "PROCESS", "WORK", "PARTNERSHIP"].map((page) => (
-                page === "HOME" ? (
+              {["WORK", "PROCESS", "STRATEGY", "ABOUT US", "PARTNERSHIP"].map((page) => {
+                const href = page === "WORK" ? "#work" :
+                  page === "PROCESS" ? "#process" :
+                  page === "STRATEGY" ? "#strategy" :
+                  page === "ABOUT US" ? "#about" :
+                  "/connect";
+
+                return (
                   <a
                     key={page}
-                    href="#top"
-                    onClick={(e) => { e.preventDefault(); lenisRef.current?.scrollTo(0); }}
+                    href={href}
+                    onClick={(e) => {
+                      if (href.startsWith("#")) {
+                        e.preventDefault();
+                        const target = document.querySelector(href) as HTMLElement;
+                        if (target) lenisRef.current?.scrollTo(target);
+                      }
+                    }}
                     className="text-[#B2B2B2]"
                     style={{
                       fontFamily: "'SF Pro', sans-serif",
@@ -2042,27 +2045,13 @@ export default function Home() {
                       lineHeight: "21px",
                       textAlign: "right",
                       fontWeight: 400,
-                      textDecoration: "none",
+                      textDecoration: "none"
                     }}
                   >
                     <HoverMenuText text={page} hoverColor="#DA5932" />
                   </a>
-                ) : (
-                  <div
-                    key={page}
-                    className="text-[#B2B2B2]"
-                    style={{
-                      fontFamily: "'SF Pro', sans-serif",
-                      fontSize: "18px",
-                      lineHeight: "21px",
-                      textAlign: "right",
-                      fontWeight: 400
-                    }}
-                  >
-                    <HoverMenuText text={page} hoverColor="#DA5932" />
-                  </div>
-                )
-              ))}
+                );
+              })}
             </div>
           </div>
 

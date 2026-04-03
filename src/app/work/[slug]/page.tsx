@@ -119,9 +119,10 @@ export default function CaseStudyPage() {
         </a>
         <div style={{ display: "flex", gap: "30px", alignItems: "center" }}>
           <div style={{ display: "flex", gap: "26px", color: "#dfdfdfff", fontSize: "14px", fontFamily: "'SF Pro Rounded', sans-serif" }}>
-            <a href="/#strategy" style={{ textDecoration: "none", color: "inherit" }}><HoverMenuText text="Strategy" /></a>
             <a href="/#work" style={{ textDecoration: "none", color: "inherit" }}><HoverMenuText text="Work" /></a>
-            <a href="/#about-us" style={{ textDecoration: "none", color: "inherit" }}><HoverMenuText text="About Us" /></a>
+            <a href="/#process" style={{ textDecoration: "none", color: "inherit" }}><HoverMenuText text="Process" /></a>
+            <a href="/#strategy" style={{ textDecoration: "none", color: "inherit" }}><HoverMenuText text="Strategy" /></a>
+            <a href="/#about" style={{ textDecoration: "none", color: "inherit" }}><HoverMenuText text="About Us" /></a>
           </div>
           <a href="/connect" style={{ textDecoration: "none" }}>
             <div style={{ padding: "2px 12px", background: "#FFFFFF", borderRadius: "1px", boxShadow: "0px 2px 6px rgba(232, 42, 0, 0.25), inset 0px -6px 40px rgba(255, 152, 115, 0.6)" }}>
@@ -210,7 +211,7 @@ export default function CaseStudyPage() {
               </div>
               <a href="/connect" style={{ textDecoration: "none" }}>
                 <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "12px 46px", background: "#FFFFFF", boxShadow: "0px 2px 6px rgba(232, 42, 0, 0.25), inset 0px -6px 40px rgba(255, 152, 115, 0.6)", borderRadius: "1px", transform: "matrix(1, 0, 0, -1, 0, 0)", cursor: "pointer" }}>
-                  <div style={{ fontFamily: "'SF Compact', sans-serif", fontWeight: 556, fontSize: "16px", color: "#F24C1A", transform: "matrix(1, 0, 0, -1, 0, 0)" }}><HoverMenuText text="Connect with us" hoverColor="#F24C1A" /></div>
+                  <div style={{ fontFamily: "'SF Compact', sans-serif", fontWeight: 556, fontSize: "16px", color: "#F24C1A", transform: "matrix(1, 0, 0, -1, 0, 0)" }}><HoverMenuText text="PARTNER WITH US" hoverColor="#F24C1A" /></div>
                 </div>
               </a>
             </div>
@@ -231,11 +232,31 @@ export default function CaseStudyPage() {
               <div style={{ display: "flex", gap: "16px" }}>{[0, 1, 2].map((i) => <div key={i} style={{ width: "44px", height: "44px", background: "#1717176d", border: "0.6px solid #221b19ff", borderRadius: "4px" }} />)}</div>
             </div>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "14px" }}>
-              {["HOME", "WORK", "ABOUT US", "OUR STRATEGY", "PARTNERSHIP"].map((page) => (
-                <a key={page} href={page === "HOME" || page === "WORK" ? "/#work" : `/#${page.toLowerCase().replace(" ", "-")}`} className="text-[#B2B2B2]" style={{ fontFamily: "'SF Pro', sans-serif", fontSize: "18px", lineHeight: "21px", textAlign: "right", fontWeight: 400, textDecoration: "none" }}>
-                  <HoverMenuText text={page} hoverColor="#DA5932" />
-                </a>
-              ))}
+              {["WORK", "PROCESS", "STRATEGY", "ABOUT US", "PARTNERSHIP"].map((page) => {
+                const href = page === "WORK" ? "/#work" :
+                  page === "PROCESS" ? "/#process" :
+                  page === "STRATEGY" ? "/#strategy" :
+                  page === "ABOUT US" ? "/#about" :
+                  "/connect";
+
+                return (
+                  <a
+                    key={page}
+                    href={href}
+                    className="text-[#B2B2B2]"
+                    style={{
+                      fontFamily: "'SF Pro', sans-serif",
+                      fontSize: "18px",
+                      lineHeight: "21px",
+                      textAlign: "right",
+                      fontWeight: 400,
+                      textDecoration: "none"
+                    }}
+                  >
+                    <HoverMenuText text={page} hoverColor="#DA5932" />
+                  </a>
+                );
+              })}
             </div>
           </div>
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start", width: "100%", maxWidth: "1340px", height: "201px", margin: "0 auto" }}>
