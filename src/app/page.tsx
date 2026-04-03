@@ -479,6 +479,33 @@ export default function Home() {
               <HoverMenuText text="Strategy" />
             </a>
 
+            {/* Process */}
+            <a
+              href="#process"
+              onClick={(e) => { e.preventDefault(); lenisRef.current?.scrollTo("#process"); }}
+              style={{
+                width: "max-content",
+                height: "max-content",
+                fontFamily: "'SF Pro Rounded', sans-serif",
+                fontStyle: "normal",
+                fontWeight: 400,
+                fontSize: "14px",
+                lineHeight: "23px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                color: "#dfdfdfff",
+                flex: "none",
+                order: 1,
+                flexGrow: 0,
+                whiteSpace: "nowrap",
+                textDecoration: "none",
+              }}
+            >
+              <HoverMenuText text="Process" />
+            </a>
+
             {/* Work */}
             <a
               href="#work"
@@ -495,39 +522,12 @@ export default function Home() {
                 alignItems: "center",
                 color: "#dfdfdfff",
                 flex: "none",
-                order: 1,
+                order: 2,
                 flexGrow: 0,
                 textDecoration: "none",
               }}
             >
               <HoverMenuText text="Work" />
-            </a>
-
-            {/* About Us */}
-            <a
-              href="#about-us"
-              onClick={(e) => { e.preventDefault(); lenisRef.current?.scrollTo("#about-us"); }}
-              style={{
-                width: "max-content",
-                height: "max-content",
-                fontFamily: "'SF Pro Rounded', sans-serif",
-                fontStyle: "normal",
-                fontWeight: 400,
-                fontSize: "14px",
-                lineHeight: "23px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                textAlign: "center",
-                color: "#dfdfdfff",
-                flex: "none",
-                order: 2,
-                flexGrow: 0,
-                whiteSpace: "nowrap",
-                textDecoration: "none",
-              }}
-            >
-              <HoverMenuText text="About Us" />
             </a>
           </div>
 
@@ -1083,9 +1083,7 @@ export default function Home() {
                       }}
                     >
                       <span>
-                        We bypass standard marketing practices. Grayforge operates<br />
-                        at the intersection of quantitative data analysis and psychological<br />
-                        creative direction.
+                        At Grayforge we foster growth with data driven marketing solutions. We eliminate guesswork by architecting high-precision strategies that drive measurable brand dominance.
                       </span>
                     </div>
                   </div>
@@ -1174,24 +1172,6 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* 02 */}
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "10px", width: "100%" }}>
-                    <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "8px", width: "100%" }}>
-                      <div className="flex flex-wrap items-center justify-center w-[14px]">
-                        <svg width="16" height="14" viewBox="0 0 16 14" fill="none"><circle cx="7" cy="2" r="1.5" fill="#9B462C" /><circle cx="7" cy="12" r="1.5" fill="#9B462C" /><circle cx="12" cy="7" r="1.5" fill="#9B462C" /><circle cx="2" cy="7" r="1.5" fill="#9B462C" /><circle cx="7" cy="7" r="1.5" fill="#9B462C" /></svg>
-                      </div>
-                      <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "22px", color: "#979797ff", paddingLeft: "4px" }}>
-                        Tiktok Ads
-                      </div>
-                    </div>
-                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", color: "#4f4f4fff" }}>
-                      <span>
-                        Native short-form strategy designed to capture<br />
-                        attention and drive immediate conversion at volume.
-                      </span>
-                    </div>
-                  </div>
-
                   {/* 03 */}
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "10px", width: "100%" }}>
                     <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "8px", width: "100%" }}>
@@ -1263,13 +1243,14 @@ export default function Home() {
 
         {/* Section 3 - PROCESS */}
         <section
-          id="about-us"
+          id="process"
           className="w-full flex justify-center box-border relative"
           style={{
             background: "#090909",
-            height: "962px",
+            minHeight: "400px",
             zIndex: 7,
-            pointerEvents: "auto"
+            pointerEvents: "auto",
+            paddingBottom: "140px"
           }}
         >
           {/* Inner Wrapper (Grid Alignment) */}
@@ -1279,8 +1260,8 @@ export default function Home() {
               flexDirection: "column",
               maxWidth: "1440px",
               width: "100%",
-              padding: "90px 50px",
-              gap: "120px",
+              padding: "90px 50px 0",
+              gap: "140px",
               margin: "0 auto",
             }}
           >
@@ -1350,86 +1331,80 @@ export default function Home() {
                       height: "72px",
                       flex: "none",
                       order: 1,
+                      marginTop: "-14px"
                     }}
                   >
                     <div style={{ width: "563px", height: "72px", fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "18px", lineHeight: "24px", display: "flex", alignItems: "center", color: "#B2B2B2" }}>
-                      We bypass standard marketing practices. Grayforge operates at the intersection of quantitative data analysis and psychological creative direction.
+                      Dedicated to architect strategies that helps your brand connect with your audience which drives measurable results.
                     </div>
                   </div>
                 </div>
               </div>
             </FadeInBlock>
 
-            {/* Case study carousal (3 Cards) */}
+            {/* Case study grid (3 columns, vertical flow) */}
             <FadeInBlock as="div"
               style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "0px",
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gridAutoFlow: "column",
+                gridTemplateRows: "repeat(2, auto)",
+                gap: "100px 180px",
                 width: "1340px",
-                height: "486px",
+                padding: "0px",
                 flex: "none",
                 order: 1,
               }}
             >
               {[
-                { brand: "Zyrotech", roas: "3.8x ROAS", revenue: "Revenue : $0 to $58k / month" },
-                { brand: "Zyrotech", roas: "3.8x ROAS", revenue: "Revenue : $0 to $58k / month" },
-                { brand: "Zyrotech", roas: "3.8x ROAS", revenue: "Revenue : $0 to $58k / month" }
-              ].map((card, i) => (
+                { title: "Client Briefing", desc: "Brand deep dive and KPI alignment. Establish primary creative direction for scaling deployment." },
+                { title: "Market Analysis", desc: "Granular analysis of high-intent segments. Locate untapped growth opportunities in your niche." },
+                { title: "Creative Strategy", desc: "High-conviction creative and strategy. Optimized for psychological impact and conversion velocity." },
+                { title: "Performance Analysis", desc: "Continuous monitoring of ROAS health. Real-time creative pivots based on live performance data." },
+                { title: "CBO Deployment", desc: "Advanced CBO structures to capture scale. Consolidate budget into adsets with peak stability." },
+                { title: "Final Delivery", desc: "Handover of performance infrastructure. Documented growth and measurable impact for the project." }
+              ].map((step, i) => (
                 <div
                   key={i}
                   style={{
-                    boxSizing: "border-box",
                     display: "flex",
                     flexDirection: "row",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    padding: "20px",
-                    gap: "20px",
-                    width: "400px",
-                    height: "486px",
-                    background: "#101010ce",
-                    border: "0.8px solid #1F1F1Fcf",
-                    flex: "none",
-                    order: i,
+                    alignItems: "flex-start",
+                    gap: "24px",
                   }}
                 >
+                  {/* Indicators */}
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", marginTop: "6px", flexShrink: 0 }}>
+                    {/* 5-circle logo */}
+                    <svg width="16" height="14" viewBox="0 0 16 14" fill="none" style={{ background: "#090909" }}>
+                      <circle cx="7" cy="2" r="1.2" fill="#9B462C" />
+                      <circle cx="7" cy="12" r="1.2" fill="#9B462C" />
+                      <circle cx="12" cy="7" r="1.2" fill="#9B462C" />
+                      <circle cx="2" cy="7" r="1.2" fill="#9B462C" />
+                      <circle cx="7" cy="7" r="1.2" fill="#9B462C" />
+                    </svg>
+                  </div>
+
                   <div
                     style={{
                       display: "flex",
                       flexDirection: "column",
-                      justifyContent: "space-between",
-                      alignItems: "flex-start",
-                      padding: "0px",
-                      gap: "12px",
-                      width: "360px",
-                      height: "446px",
-                      flex: "none",
-                      flexGrow: 1,
+                      gap: "2px",
                     }}
                   >
-                    {/* Brand */}
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px", margin: "0 auto", width: "70px", height: "16px", flex: "none", order: 0 }}>
-                      <div style={{ width: "70px", height: "16px", fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "16px", display: "flex", alignItems: "center", textAlign: "right", color: "#BCBCBC", opacity: 0.88 }}>
-                        {card.brand}
-                      </div>
+                    {/* STEP LABEL */}
+                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "10px", color: "#686868", textTransform: "uppercase", letterSpacing: "0.1em", opacity: 0.4 }}>
+                      STEP 0{i + 1}
                     </div>
 
-                    {/* Metrics */}
-                    <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start", padding: "0px", gap: "10px", margin: "0 auto", width: "360px", height: "52px", flex: "none", order: 1 }}>
-                      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px", margin: "0 auto", width: "124px", height: "28px", flex: "none" }}>
-                        <div style={{ width: "124px", height: "28px", fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", textAlign: "right", color: "#D3D3D3", opacity: 0.88 }}>
-                          {card.roas}
-                        </div>
-                      </div>
-                      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px", margin: "0 auto", width: "360px", height: "22px", flex: "none" }}>
-                        <div style={{ width: "224px", height: "22px", fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", display: "flex", alignItems: "center", color: "#7C7C7C" }}>
-                          {card.revenue}
-                        </div>
-                      </div>
+                    {/* Brand / Header */}
+                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", color: step.title === "Final Delivery" ? "#E88264" : "#BCBCBC", opacity: 0.95 }}>
+                      {step.title}
+                    </div>
+
+                    {/* Description */}
+                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "15px", lineHeight: "20px", color: "#7C7C7C", marginTop: "4px" }}>
+                      {step.desc}
                     </div>
                   </div>
                 </div>
@@ -1439,7 +1414,7 @@ export default function Home() {
           <HorizontalGridDivider />
         </section>
 
-        {/* Section 4 - OUR WORK (Previously Process) */}
+        {/* Section 4 - OUR WORK */}
         <section
           id="work"
           className="w-full flex flex-col box-border relative"
@@ -1619,61 +1594,61 @@ export default function Home() {
                       cursor: "pointer",
                     }}
                   >
-                  {/* Details */}
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                      alignItems: "flex-start",
-                      padding: "0px",
-                      gap: "12px",
-                      width: "240px",
-                      height: "100%",
-                    }}
-                  >
-                    {/* Brand */}
-                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "20px", display: "flex", alignItems: "center", textAlign: "right", color: "#BCBCBC", opacity: 0.88 }}>
-                      Meta Ads - Ecommerce
-                    </div>
-
-                    {/* Metrics */}
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "4px" }}>
-                      <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", color: "#D3D3D3", opacity: 0.88 }}>
-                        10.11x ROAS
-                      </div>
-                      <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", display: "flex", alignItems: "center", color: "#7C7C7C" }}>
-                        ₹58k revenue on ₹5.7k spent
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Right Content Group (Divider + Insight) */}
-                  <div style={{ display: "flex", flexDirection: "row", alignItems: "stretch", gap: "24px", height: "100%" }}>
-                    {/* Divider */}
-                    <div style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "0px", gap: "10px", width: "0px", height: "100%" }}>
-                      <div style={{ width: "0px", height: "100%", border: "0.8px dashed #202020e2", opacity: 0.68 }}></div>
-                    </div>
-
-                    {/* Praise */}
+                    {/* Details */}
                     <div
                       style={{
                         display: "flex",
                         flexDirection: "column",
-                        justifyContent: "flex-start",
+                        justifyContent: "space-between",
                         alignItems: "flex-start",
-                        padding: "0px 2px",
-                        width: "264px",
+                        padding: "0px",
+                        gap: "12px",
+                        width: "240px",
                         height: "100%",
                       }}
                     >
-                      <p style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 300, fontSize: "15px", lineHeight: "22px", letterSpacing: 0, color: "#686868ff", margin: 0 }}>
-                        Maintained elite-level returns on a lean budget with zero underperforming campaigns.
-                      </p>
+                      {/* Brand */}
+                      <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "20px", display: "flex", alignItems: "center", textAlign: "right", color: "#BCBCBC", opacity: 0.88 }}>
+                        Meta Ads - Ecommerce
+                      </div>
+
+                      {/* Metrics */}
+                      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "4px" }}>
+                        <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", color: "#D3D3D3", opacity: 0.88 }}>
+                          10.11x ROAS
+                        </div>
+                        <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", display: "flex", alignItems: "center", color: "#7C7C7C" }}>
+                          ₹58k revenue on ₹5.7k spent
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right Content Group (Divider + Insight) */}
+                    <div style={{ display: "flex", flexDirection: "row", alignItems: "stretch", gap: "24px", height: "100%" }}>
+                      {/* Divider */}
+                      <div style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "0px", gap: "10px", width: "0px", height: "100%" }}>
+                        <div style={{ width: "0px", height: "100%", border: "0.8px dashed #202020e2", opacity: 0.68 }}></div>
+                      </div>
+
+                      {/* Praise */}
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "flex-start",
+                          alignItems: "flex-start",
+                          padding: "0px 2px",
+                          width: "264px",
+                          height: "100%",
+                        }}
+                      >
+                        <p style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 300, fontSize: "15px", lineHeight: "22px", letterSpacing: 0, color: "#686868ff", margin: 0 }}>
+                          Maintained elite-level returns on a lean budget with zero underperforming campaigns.
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </a>
+                </a>
 
                 {/* Subliminal Card */}
                 <a href="/work/subliminal" style={{ textDecoration: "none", color: "inherit" }}>
@@ -1696,61 +1671,61 @@ export default function Home() {
                       cursor: "pointer",
                     }}
                   >
-                  {/* Details */}
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                      alignItems: "flex-start",
-                      padding: "0px",
-                      gap: "12px",
-                      width: "240px",
-                      height: "100%",
-                    }}
-                  >
-                    {/* Brand */}
-                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "20px", display: "flex", alignItems: "center", textAlign: "right", color: "#BCBCBC", opacity: 0.88 }}>
-                      Meta Ads - Ecommerce
-                    </div>
-
-                    {/* Metrics */}
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "4px" }}>
-                      <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", color: "#D3D3D3", opacity: 0.88 }}>
-                        6.83x Avg ROAS
-                      </div>
-                      <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", display: "flex", alignItems: "center", color: "#7C7C7C" }}>
-                        ₹4.37L revenue generated
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Right Content Group (Divider + Insight) */}
-                  <div style={{ display: "flex", flexDirection: "row", alignItems: "stretch", gap: "24px", height: "100%" }}>
-                    {/* Divider */}
-                    <div style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "0px", gap: "10px", width: "0px", height: "100%" }}>
-                      <div style={{ width: "0px", height: "100%", border: "0.8px dashed #202020e2", opacity: 0.68 }}></div>
-                    </div>
-
-                    {/* Praise */}
+                    {/* Details */}
                     <div
                       style={{
                         display: "flex",
                         flexDirection: "column",
-                        justifyContent: "flex-start",
+                        justifyContent: "space-between",
                         alignItems: "flex-start",
-                        padding: "0px 2px",
-                        width: "264px",
+                        padding: "0px",
+                        gap: "12px",
+                        width: "240px",
                         height: "100%",
                       }}
                     >
-                      <p style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 300, fontSize: "15px", lineHeight: "22px", letterSpacing: 0, color: "#686868ff", margin: 0 }}>
-                        Drove high purchase volume on Meta while keeping returns well above target.
-                      </p>
+                      {/* Brand */}
+                      <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "20px", display: "flex", alignItems: "center", textAlign: "right", color: "#BCBCBC", opacity: 0.88 }}>
+                        Meta Ads - Ecommerce
+                      </div>
+
+                      {/* Metrics */}
+                      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "4px" }}>
+                        <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", color: "#D3D3D3", opacity: 0.88 }}>
+                          6.83x Avg ROAS
+                        </div>
+                        <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", display: "flex", alignItems: "center", color: "#7C7C7C" }}>
+                          ₹4.37L revenue generated
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right Content Group (Divider + Insight) */}
+                    <div style={{ display: "flex", flexDirection: "row", alignItems: "stretch", gap: "24px", height: "100%" }}>
+                      {/* Divider */}
+                      <div style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "0px", gap: "10px", width: "0px", height: "100%" }}>
+                        <div style={{ width: "0px", height: "100%", border: "0.8px dashed #202020e2", opacity: 0.68 }}></div>
+                      </div>
+
+                      {/* Praise */}
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "flex-start",
+                          alignItems: "flex-start",
+                          padding: "0px 2px",
+                          width: "264px",
+                          height: "100%",
+                        }}
+                      >
+                        <p style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 300, fontSize: "15px", lineHeight: "22px", letterSpacing: 0, color: "#686868ff", margin: 0 }}>
+                          Drove high purchase volume on Meta while keeping returns well above target.
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </a>
+                </a>
 
                 {/* 3rd Card - Google Shopping */}
                 <a href="/work/google-shopping" style={{ textDecoration: "none", color: "inherit" }}>
@@ -1773,61 +1748,61 @@ export default function Home() {
                       cursor: "pointer",
                     }}
                   >
-                  {/* Details */}
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                      alignItems: "flex-start",
-                      padding: "0px",
-                      gap: "12px",
-                      width: "240px",
-                      height: "100%",
-                    }}
-                  >
-                    {/* Brand */}
-                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "20px", display: "flex", alignItems: "center", textAlign: "right", color: "#BCBCBC", opacity: 0.88 }}>
-                      Google Shopping - Ecommerce
-                    </div>
-
-                    {/* Metrics */}
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "4px" }}>
-                      <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", color: "#D3D3D3", opacity: 0.88 }}>
-                        3.41x Avg ROAS
-                      </div>
-                      <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", display: "flex", alignItems: "center", color: "#7C7C7C" }}>
-                        ₹3.41L Revenue Generated
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Right Content Group (Divider + Insight) */}
-                  <div style={{ display: "flex", flexDirection: "row", alignItems: "stretch", gap: "24px", height: "100%" }}>
-                    {/* Divider */}
-                    <div style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "0px", gap: "10px", width: "0px", height: "100%" }}>
-                      <div style={{ width: "0px", height: "100%", border: "0.8px dashed #202020e2", opacity: 0.68 }}></div>
-                    </div>
-
-                    {/* Praise */}
+                    {/* Details */}
                     <div
                       style={{
                         display: "flex",
                         flexDirection: "column",
-                        justifyContent: "flex-start",
+                        justifyContent: "space-between",
                         alignItems: "flex-start",
-                        padding: "0px 2px",
-                        width: "264px",
+                        padding: "0px",
+                        gap: "12px",
+                        width: "240px",
                         height: "100%",
                       }}
                     >
-                      <p style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 300, fontSize: "15px", lineHeight: "22px", letterSpacing: 0, color: "#686868ff", margin: 0 }}>
-                        Scaled Google Shopping profitably across multiple campaigns with consistent returns.
-                      </p>
+                      {/* Brand */}
+                      <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "20px", display: "flex", alignItems: "center", textAlign: "right", color: "#BCBCBC", opacity: 0.88 }}>
+                        Google Shopping - Ecommerce
+                      </div>
+
+                      {/* Metrics */}
+                      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "4px" }}>
+                        <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "22px", lineHeight: "28px", display: "flex", alignItems: "center", color: "#D3D3D3", opacity: 0.88 }}>
+                          3.41x Avg ROAS
+                        </div>
+                        <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", display: "flex", alignItems: "center", color: "#7C7C7C" }}>
+                          ₹3.41L Revenue Generated
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right Content Group (Divider + Insight) */}
+                    <div style={{ display: "flex", flexDirection: "row", alignItems: "stretch", gap: "24px", height: "100%" }}>
+                      {/* Divider */}
+                      <div style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "0px", gap: "10px", width: "0px", height: "100%" }}>
+                        <div style={{ width: "0px", height: "100%", border: "0.8px dashed #202020e2", opacity: 0.68 }}></div>
+                      </div>
+
+                      {/* Praise */}
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "flex-start",
+                          alignItems: "flex-start",
+                          padding: "0px 2px",
+                          width: "264px",
+                          height: "100%",
+                        }}
+                      >
+                        <p style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 300, fontSize: "15px", lineHeight: "22px", letterSpacing: 0, color: "#686868ff", margin: 0 }}>
+                          Scaled Google Shopping profitably across multiple campaigns with consistent returns.
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </a>
+                </a>
               </div>
             </FadeInBlock>
           </div>
@@ -2029,7 +2004,7 @@ export default function Home() {
 
             {/* Right: Pages */}
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "14px" }}>
-              {["HOME", "WORK", "ABOUT US", "OUR STRATEGY", "PARTNERSHIP"].map((page) => (
+              {["HOME", "STRATEGY", "PROCESS", "WORK", "PARTNERSHIP"].map((page) => (
                 page === "HOME" ? (
                   <a
                     key={page}
