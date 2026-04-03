@@ -143,9 +143,6 @@ export default function CaseStudyPage() {
                   <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "20px", color: "#FF8C42", opacity: 0.6 }}>
                     {data.category}
                   </div>
-                  <div style={{ padding: "4px 10px", background: "rgba(89, 126, 247, 0.12)", color: "#597EF7", fontFamily: "'SF Pro', sans-serif", fontSize: "12px", fontWeight: 600, borderRadius: "100px", letterSpacing: "0.02em" }}>
-                    Completed
-                  </div>
                 </div>
                 <h1 style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "30px", lineHeight: "52px", color: "#DEDCDC", margin: 0, maxWidth: "540px" }}>
                   {data.title}
@@ -205,21 +202,7 @@ export default function CaseStudyPage() {
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "40px 50px", gap: "20px", width: "100%", maxWidth: "1429px", boxSizing: "border-box", background: "url('/Landing/7.png') center/cover no-repeat", overflow: "hidden" }}>
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "flex-end", width: "100%" }}>
               <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", gap: "12px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
-                  <div style={{ 
-                    padding: "4px 10px", 
-                    background: "rgba(89, 126, 247, 0.12)", 
-                    color: "#597EF7", 
-                    fontFamily: "'SF Pro', sans-serif", 
-                    fontSize: "12px", 
-                    fontWeight: 600, 
-                    borderRadius: "100px", 
-                    letterSpacing: "0.02em",
-                    textTransform: "uppercase"
-                  }}>
-                    Completed
-                  </div>
-                </div>
+
                 <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "34px", lineHeight: "38px", color: "#DEDCDC" }}>Ready to Scale ?</div>
                 <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", color: "#B2B2B2", maxWidth: "506px" }}>
                   <span>We selectively partner with brands where market dominance is the only objective. Inquire for our intake.</span>
