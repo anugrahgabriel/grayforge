@@ -529,6 +529,31 @@ export default function Home() {
             >
               <HoverMenuText text="Work" />
             </a>
+
+            {/* About Us */}
+            <div
+              style={{
+                width: "max-content",
+                height: "max-content",
+                fontFamily: "'SF Pro Rounded', sans-serif",
+                fontStyle: "normal",
+                fontWeight: 400,
+                fontSize: "14px",
+                lineHeight: "23px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                color: "#dfdfdfff",
+                flex: "none",
+                order: 3,
+                flexGrow: 0,
+                whiteSpace: "nowrap",
+                cursor: "default",
+              }}
+            >
+              <HoverMenuText text="About Us" />
+            </div>
           </div>
 
           {/* CONNECT Button */}
@@ -1403,7 +1428,7 @@ export default function Home() {
                     </div>
 
                     {/* Description */}
-                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "15px", lineHeight: "20px", color: "#7C7C7C", marginTop: "4px" }}>
+                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", color: "#7C7C7C", marginTop: "4px" }}>
                       {step.desc}
                     </div>
                   </div>
