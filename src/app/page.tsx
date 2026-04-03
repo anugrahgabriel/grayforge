@@ -773,7 +773,7 @@ export default function Home() {
                       transform: "matrix(1, 0, 0, -1, 0, 0)", // Flip text back
                     }}
                   >
-                    <HoverMenuText text="START SCALING" hoverColor="#F24C1A" />
+                    <HoverMenuText text="Start Scaling" hoverColor="#F24C1A" />
                   </div>
                 </div>
               </a>
@@ -1950,7 +1950,7 @@ export default function Home() {
                       transform: "matrix(1, 0, 0, -1, 0, 0)", // Flip text back
                     }}
                   >
-                    <HoverMenuText text="PARTNER WITH US" hoverColor="#F24C1A" />
+                    <HoverMenuText text="Partner with us" hoverColor="#F24C1A" />
                   </div>
                 </div>
               </a>

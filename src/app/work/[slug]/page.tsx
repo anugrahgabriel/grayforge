@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
 import Lenis from "lenis";
+import { CASE_STUDIES } from "@/data/case-studies";
 
 // --- Components from main page.tsx ---
 
@@ -52,27 +53,41 @@ const HorizontalGridDivider = ({ position = "bottom" }: { position?: "top" | "bo
   <div style={{ position: "absolute", [position]: 0, left: "50%", transform: "translateX(-50%)", width: "100%", maxWidth: "1429px", height: "1px", background: "rgba(82, 82, 82, 0.12)", pointerEvents: "none", zIndex: 0 }} />
 );
 
-// --- Case Study Data ---
+const MeterDigit = ({ digit, isVisible, delayIndex }: { digit: string, isVisible: boolean, delayIndex: number }) => {
+  const isNumber = !isNaN(parseInt(digit)) && digit !== " ";
+  if (!isNumber) return <span style={{ display: "inline-flex" }}>{digit}</span>;
+  const targetNum = parseInt(digit);
+  const spinTarget = targetNum + 10;
+  return (
+    <span style={{ display: "inline-flex", flexDirection: "column", height: "1em", overflow: "hidden", position: "relative", verticalAlign: "bottom", maskImage: "linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)" }}>
+      <span style={{ display: "flex", flexDirection: "column", transform: isVisible ? `translateY(-${spinTarget}em)` : "translateY(0)", transition: `transform 2s cubic-bezier(0.16, 1, 0.3, 1) ${delayIndex * 0.15}s` }}>
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((n, idx) => (
+          <span key={idx} style={{ height: "1em", lineHeight: "1em" }}>{n}</span>
+        ))}
+      </span>
+    </span>
+  );
+};
 
-const CASE_STUDIES: Record<string, any> = {
-  "zyrotech": {
-    brand: "Meta Ads - Ecommerce",
-    stat: "10.11x ROAS",
-    revenue: "₹58k revenue on ₹5.7k spent",
-    description: "Maintained elite-level returns on a lean budget with zero underperforming campaigns. Our strategy focused on micro-targeted audiences and automated bidding optimization.",
-  },
-  "subliminal": {
-    brand: "Meta Ads - Ecommerce",
-    stat: "6.83x Avg ROAS",
-    revenue: "₹4.37L revenue generated",
-    description: "Drove high purchase volume on Meta while keeping returns well above target. By leveraging psychological creative direction, we scaled the brand's volume without sacrificing return efficiency.",
-  },
-  "google-shopping": {
-    brand: "Google Shopping - Ecommerce",
-    stat: "3.41x Avg ROAS",
-    revenue: "₹3.41L Revenue Generated",
-    description: "Scaled Google Shopping profitably across multiple campaigns with consistent returns. We focused on high-intent search queries and product feed optimization for maximum conversion velocity.",
-  }
+const MeterText = ({ text }: { text: string }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const domRef = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) setIsVisible(true); }, { threshold: 0 });
+    const curr = domRef.current;
+    if (curr) observer.observe(curr);
+    return () => { if (curr) observer.unobserve(curr); };
+  }, []);
+  let digitCount = 0;
+  return (
+    <span ref={domRef} style={{ display: "inline-flex", alignItems: "baseline" }}>
+      {text.split("").map((char, i) => {
+        const isNum = !isNaN(parseInt(char)) && char !== " ";
+        if (isNum) digitCount++;
+        return <MeterDigit key={i} digit={char} isVisible={isVisible} delayIndex={isNum ? digitCount : 0} />;
+      })}
+    </span>
+  );
 };
 
 export default function CaseStudyPage() {
@@ -96,7 +111,7 @@ export default function CaseStudyPage() {
   return (
     <main className="w-full flex flex-col items-center box-border">
       <GlobalGridLines />
-      
+
       {/* Nav */}
       <nav style={{ position: "fixed", top: "32px", left: "50%", transform: "translateX(-50%)", zIndex: 50, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "14px 20px", width: "1144px", height: "52px", background: isScrolled ? "rgba(22, 22, 22, 0.7)" : "transparent", backdropFilter: isScrolled ? "blur(16px)" : "none", WebkitBackdropFilter: isScrolled ? "blur(16px)" : "none", border: isScrolled ? "0.8px solid rgba(39, 39, 39, 0.6)" : "0.8px solid transparent", borderRadius: "4px", transition: "all 0.2s cubic-bezier(0.1, 0.9, 0.2, 1)" }}>
         <a href="/#work" style={{ textDecoration: "none" }}>
@@ -117,33 +132,69 @@ export default function CaseStudyPage() {
       </nav>
 
       <div className="flex flex-col w-full flex-grow" style={{ position: "relative", zIndex: 2, pointerEvents: "none" }}>
-        {/* Top Fold */}
-        <section className="w-full min-h-screen flex flex-col items-center justify-center px-[50px] relative overflow-hidden" style={{ background: "#090909", paddingTop: "120px", paddingBottom: "100px", pointerEvents: "auto" }}>
-          <div style={{ width: "100%", maxWidth: "1340px", display: "flex", flexDirection: "column", gap: "40px" }}>
-            <FadeInBlock style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <a href="/#work" style={{ textDecoration: "none", width: "max-content" }}>
-                <div style={{ fontFamily: "'SF Pro', sans-serif", fontSize: "13px", color: "#686868ff", display: "flex", alignItems: "center", gap: "6px" }}>
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none" style={{ transform: "rotate(180deg)" }}>
-                    <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  BACK TO WORK
-                </div>
-              </a>
-              <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", color: "#BCBCBC", opacity: 0.88, textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                {data.brand}
-              </div>
-              <h1 style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "84px", lineHeight: "90px", color: "#DEDCDC", margin: 0 }}>
-                {data.stat}
-              </h1>
-              <p style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "24px", color: "#7C7C7C", margin: 0 }}>
-                {data.revenue}
-              </p>
-            </FadeInBlock>
+        {/* Main Case Study Section */}
+        <section className="w-full min-h-screen flex justify-center px-[50px] relative overflow-hidden" style={{ paddingTop: "120px", paddingBottom: "100px", pointerEvents: "auto", background: "#090909" }}>
+          <div style={{ width: "100%", maxWidth: "880px", display: "flex", flexDirection: "column", gap: "80px" }}>
 
-            <FadeInBlock style={{ maxWidth: "700px" }}>
-              <p style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 300, fontSize: "18px", lineHeight: "28px", color: "#B2B2B2", margin: 0 }}>
-                {data.description}
-              </p>
+            <FadeInBlock style={{ display: "flex", flexDirection: "column", gap: "130px" }}>
+              {/* Header Section (Left Aligned) */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px", alignSelf: "flex-start", textAlign: "left" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+                  <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "16px", lineHeight: "20px", color: "#FF8C42", opacity: 0.6 }}>
+                    {data.category}
+                  </div>
+                  <div style={{ padding: "4px 10px", background: "rgba(89, 126, 247, 0.12)", color: "#597EF7", fontFamily: "'SF Pro', sans-serif", fontSize: "12px", fontWeight: 600, borderRadius: "100px", letterSpacing: "0.02em" }}>
+                    Completed
+                  </div>
+                </div>
+                <h1 style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "30px", lineHeight: "52px", color: "#DEDCDC", margin: 0, maxWidth: "540px" }}>
+                  {data.title}
+                </h1>
+                <div style={{ width: "100%", maxWidth: "540px" }}>
+                  <p style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "1.4", color: "#B2B2B2", margin: 0, whiteSpace: "pre-wrap" }}>
+                    {data.description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Metrics Grid (Full Width, Left Aligned) */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, min-content)", width: "100%", justifyContent: "space-between", alignItems: "center", alignSelf: "flex-start", paddingRight: "18px" }}>
+                {data.gridStats.slice(0, 3).map((stat: any, idx: number) => (
+                  <div key={idx} className="stat-box" style={{ whiteSpace: "nowrap", textAlign: "left", display: "flex", flexDirection: "column", gap: "10px" }}>
+                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "15px", lineHeight: "19px", color: "#7C7C7C" }}>
+                      {stat.label}
+                    </div>
+                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 274, fontSize: "50px", lineHeight: "1.0", color: "#DEDCDC", letterSpacing: "-0.04em", marginLeft: "-4px" }}>
+                      <MeterText text={stat.value} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Insights Section (Full Width, Left Aligned) */}
+              {data.insights && (
+                <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "100%", alignSelf: "flex-start", textAlign: "left" }}>
+                  <div style={{ width: "100%", height: "1px", background: "rgba(82, 82, 82, 0.12)", marginBottom: "40px" }} />
+                  <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "15px", color: "#7C7C7C" }}>
+                      {data.insights.title}
+                    </div>
+                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "20px", lineHeight: "30px", color: "#DEDCDC" }}>
+                      {data.insights.description}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Callout Section (Full Width, Left Aligned) */}
+              {data.callout && (
+                <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "100%", alignSelf: "flex-start", textAlign: "left" }}>
+                  <div style={{ width: "100%", height: "1px", background: "rgba(82, 82, 82, 0.12)", marginBottom: "40px" }} />
+                  <div style={{ fontFamily: "'SF Pro Display', sans-serif", fontWeight: 457, fontSize: "60px", lineHeight: "1.05", color: "#DEDCDC", letterSpacing: "-0.03em", whiteSpace: "pre-wrap" }}>
+                    {data.callout}
+                  </div>
+                </div>
+              )}
             </FadeInBlock>
           </div>
           <HorizontalGridDivider />
@@ -154,6 +205,21 @@ export default function CaseStudyPage() {
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "40px 50px", gap: "20px", width: "100%", maxWidth: "1429px", boxSizing: "border-box", background: "url('/Landing/7.png') center/cover no-repeat", overflow: "hidden" }}>
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "flex-end", width: "100%" }}>
               <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", gap: "12px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+                  <div style={{ 
+                    padding: "4px 10px", 
+                    background: "rgba(89, 126, 247, 0.12)", 
+                    color: "#597EF7", 
+                    fontFamily: "'SF Pro', sans-serif", 
+                    fontSize: "12px", 
+                    fontWeight: 600, 
+                    borderRadius: "100px", 
+                    letterSpacing: "0.02em",
+                    textTransform: "uppercase"
+                  }}>
+                    Completed
+                  </div>
+                </div>
                 <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "34px", lineHeight: "38px", color: "#DEDCDC" }}>Ready to Scale ?</div>
                 <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "22px", color: "#B2B2B2", maxWidth: "506px" }}>
                   <span>We selectively partner with brands where market dominance is the only objective. Inquire for our intake.</span>
@@ -161,7 +227,7 @@ export default function CaseStudyPage() {
               </div>
               <a href="/connect" style={{ textDecoration: "none" }}>
                 <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "12px 46px", background: "#FFFFFF", boxShadow: "0px 2px 6px rgba(232, 42, 0, 0.25), inset 0px -6px 40px rgba(255, 152, 115, 0.6)", borderRadius: "1px", transform: "matrix(1, 0, 0, -1, 0, 0)", cursor: "pointer" }}>
-                  <div style={{ fontFamily: "'SF Compact', sans-serif", fontWeight: 556, fontSize: "16px", color: "#F24C1A", transform: "matrix(1, 0, 0, -1, 0, 0)" }}><HoverMenuText text="PARTNER WITH US" hoverColor="#F24C1A" /></div>
+                  <div style={{ fontFamily: "'SF Compact', sans-serif", fontWeight: 556, fontSize: "16px", color: "#F24C1A", transform: "matrix(1, 0, 0, -1, 0, 0)" }}><HoverMenuText text="Connect with us" hoverColor="#F24C1A" /></div>
                 </div>
               </a>
             </div>
