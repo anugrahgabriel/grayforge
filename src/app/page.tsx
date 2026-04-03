@@ -1261,7 +1261,7 @@ export default function Home() {
                   Revenues Generated
                 </div>
                 <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 274, fontSize: "90px", lineHeight: "96px", color: "#D3D3D3", opacity: 0.88, letterSpacing: "-0.04em", marginLeft: "-4px" }}>
-                  <MeterText text="$7.5m +" />
+                  <MeterText text="₹75L +" />
                 </div>
               </div>
             </FadeInBlock>
