@@ -169,6 +169,16 @@ export default function CaseStudyPage() {
                 ))}
               </div>
 
+              {/* Callout Section (Full Width, Left Aligned) */}
+              {data.callout && (
+                <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "100%", alignSelf: "flex-start", textAlign: "left" }}>
+                  <div style={{ width: "100%", height: "1px", background: "rgba(82, 82, 82, 0.12)", marginBottom: "40px" }} />
+                  <div style={{ fontFamily: "'SF Pro Display', sans-serif", fontWeight: 457, fontSize: "60px", lineHeight: "1.05", color: "#DEDCDC", letterSpacing: "-0.03em", whiteSpace: "pre-wrap" }}>
+                    {data.callout}
+                  </div>
+                </div>
+              )}
+
               {/* Insights Section (Full Width, Left Aligned) */}
               {data.insights && (
                 <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "100%", alignSelf: "flex-start", textAlign: "left" }}>
@@ -184,12 +194,67 @@ export default function CaseStudyPage() {
                 </div>
               )}
 
-              {/* Callout Section (Full Width, Left Aligned) */}
-              {data.callout && (
-                <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "100%", alignSelf: "flex-start", textAlign: "left" }}>
-                  <div style={{ width: "100%", height: "1px", background: "rgba(82, 82, 82, 0.12)", marginBottom: "40px" }} />
-                  <div style={{ fontFamily: "'SF Pro Display', sans-serif", fontWeight: 457, fontSize: "60px", lineHeight: "1.05", color: "#DEDCDC", letterSpacing: "-0.03em", whiteSpace: "pre-wrap" }}>
-                    {data.callout}
+              {/* Campaigns Data Table */}
+              {data.campaignData && (
+                <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "100%", alignSelf: "flex-start", textAlign: "left", marginTop: "0px", paddingBottom: "52px" }}>
+                  <div style={{ width: "100%", height: "1px", background: "rgba(82, 82, 82, 0.12)", marginBottom: "20px" }} />
+                  <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                    <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "15px", color: "#7C7C7C" }}>
+                      Campaigns Data
+                    </div>
+
+                    <div style={{ width: "100%", overflowX: "auto" }}>
+                      <table style={{ width: "100%", borderCollapse: "collapse", border: "none", tableLayout: "fixed" }}>
+                        <thead>
+                          <tr>
+                            {data.campaignData.headers.map((header: string, i: number) => (
+                              <th
+                                key={i}
+                                style={{
+                                  padding: "16px 20px",
+                                  textAlign: "left",
+                                  fontFamily: "'SF Pro', sans-serif",
+                                  fontWeight: 500,
+                                  fontSize: "13px",
+                                  color: "#7C7C7C",
+                                  borderBottom: "1px solid rgba(82, 82, 82, 0.12)",
+                                  borderRight: i === data.campaignData!.headers.length - 1 ? "none" : "1px solid rgba(82, 82, 82, 0.12)",
+                                  letterSpacing: "0.02em",
+                                  width: `${100 / data.campaignData!.headers.length}%`
+                                }}
+                              >
+                                {header.charAt(0).toUpperCase() + header.slice(1).toLowerCase()}
+                              </th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {data.campaignData.rows.map((row: string[], rowIndex: number) => {
+                            return (
+                              <tr key={rowIndex}>
+                                {row.map((val: string, colIndex: number) => (
+                                  <td
+                                    key={colIndex}
+                                    style={{
+                                      padding: "20px",
+                                      fontFamily: "'SF Pro', sans-serif",
+                                      fontWeight: 400,
+                                      fontSize: "15px",
+                                      color: "#DEDCDC",
+                                      borderBottom: rowIndex === data.campaignData!.rows.length - 1 ? "none" : "1px solid rgba(82, 82, 82, 0.12)",
+                                      borderRight: colIndex === row.length - 1 ? "none" : "1px solid rgba(82, 82, 82, 0.12)",
+                                      whiteSpace: "pre-wrap"
+                                    }}
+                                  >
+                                    {val}
+                                  </td>
+                                ))}
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               )}

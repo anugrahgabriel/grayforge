@@ -1240,8 +1240,8 @@ export default function Home() {
                 <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "18px", lineHeight: "24px", color: "#7C7C7C" }}>
                   Brands scaled
                 </div>
-                <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 274, fontSize: "90px", lineHeight: "96px", color: "#D3D3D3", opacity: 0.88, letterSpacing: "-0.04em", marginLeft: "-10px" }}>
-                  <MeterText text="100 +" />
+                <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 274, fontSize: "90px", lineHeight: "96px", color: "#D3D3D3", opacity: 0.88, letterSpacing: "-0.04em", marginLeft: "-4px" }}>
+                  <MeterText text="50 +" />
                 </div>
               </div>
 
@@ -1250,8 +1250,8 @@ export default function Home() {
                 <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 510, fontSize: "18px", lineHeight: "24px", color: "#7C7C7C" }}>
                   Campaigns Executed
                 </div>
-                <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 274, fontSize: "90px", lineHeight: "96px", color: "#D3D3D3", opacity: 0.88, letterSpacing: "-0.04em", marginLeft: "-4px" }}>
-                  <MeterText text="2.4k" />
+                <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 274, fontSize: "90px", lineHeight: "96px", color: "#D3D3D3", opacity: 0.88, letterSpacing: "-0.04em", marginLeft: "-12px" }}>
+                  <MeterText text="1.2k" />
                 </div>
               </div>
 
@@ -1261,7 +1261,7 @@ export default function Home() {
                   Revenues Generated
                 </div>
                 <div style={{ fontFamily: "'SF Pro', sans-serif", fontWeight: 274, fontSize: "90px", lineHeight: "96px", color: "#D3D3D3", opacity: 0.88, letterSpacing: "-0.04em", marginLeft: "-4px" }}>
-                  <MeterText text="₹75L +" />
+                  <MeterText text="₹1L +" />
                 </div>
               </div>
             </FadeInBlock>
@@ -2023,9 +2023,9 @@ export default function Home() {
               {["WORK", "PROCESS", "STRATEGY", "ABOUT US", "PARTNERSHIP"].map((page) => {
                 const href = page === "WORK" ? "#work" :
                   page === "PROCESS" ? "#process" :
-                  page === "STRATEGY" ? "#strategy" :
-                  page === "ABOUT US" ? "#about" :
-                  "/connect";
+                    page === "STRATEGY" ? "#strategy" :
+                      page === "ABOUT US" ? "#about" :
+                        "/connect";
 
                 return (
                   <a
